@@ -1,65 +1,137 @@
-import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight, Bot, HeartPulse, ShoppingBasket, Sparkles, Trees } from "lucide-react";
+
+import { FeatureGrid } from "@/components/marketing/feature-grid";
+import { HeroSection } from "@/components/marketing/hero";
+import { GlassCard } from "@/components/shared/glass-card";
+import { SectionHeader } from "@/components/shared/section-header";
+import { outlineLinkButtonClass } from "@/lib/button-link-styles";
+
+const stages = [
+  {
+    title: "Plan from pantry",
+    description:
+      "Use what is already at home first, then calculate only what still needs to be bought.",
+    icon: ShoppingBasket,
+  },
+  {
+    title: "Shape the week around budget",
+    description:
+      "Balance calories, macros, prep time, and cost without dropping into generic AI output.",
+    icon: HeartPulse,
+  },
+  {
+    title: "Keep workouts realistic",
+    description:
+      "Generate weekly sessions for home or gym with substitutions when equipment is limited.",
+    icon: Bot,
+  },
+  {
+    title: "Turn consistency into visible progress",
+    description:
+      "Elegant streak tracking and tree growth make adherence tangible without becoming childish.",
+    icon: Trees,
+  },
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <main className="mx-auto flex w-full max-w-[1320px] flex-col gap-6 px-4 py-4 sm:px-6 lg:px-8">
+      <HeroSection
+        title="Plan healthier weeks with pantry-aware meals, realistic workouts, and a calm premium interface."
+        description="Javiss treats pantry items, budget, prep time, profile preferences, and workout equipment as structured inputs first. The result is a product-shaped planning system, not an LLM demo."
+        primaryAction={{ label: "Open Dashboard", href: "/dashboard" }}
+        secondaryAction={{ label: "Create Account", href: "/auth/sign-up" }}
+        stats={[
+          { label: "Planning modes", value: "Pantry + Budget" },
+          { label: "Workout coverage", value: "Home + Gym" },
+          { label: "Consistency loop", value: "Streak + Tree" },
+          { label: "Architecture", value: "Deterministic-first" },
+        ]}
+      >
+        <GlassCard padding="md" className="grid gap-3">
+          <p className="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-muted-foreground">
+            Implementation phases
+          </p>
+          <div className="grid gap-2">
+            {["Planning", "Scaffolding", "Core features", "Integration", "QA polish"].map(
+              (step, index) => (
+                <div
+                  key={step}
+                  className="flex items-center justify-between rounded-[1.15rem] border border-white/80 bg-white/75 px-4 py-3"
+                >
+                  <span className="text-sm font-medium text-foreground">{step}</span>
+                  <span className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+                    0{index + 1}
+                  </span>
+                </div>
+              ),
+            )}
+          </div>
+        </GlassCard>
+      </HeroSection>
+
+      <FeatureGrid />
+
+      <SectionHeader
+        eyebrow="Product strategy"
+        title="Structured app logic first, AI extension points second"
+        description="The scaffold already separates route composition, domain services, data contracts, and the future provider boundary so recommendations can be upgraded without rewriting the app."
+        action={
+          <Link href="/dashboard" className={outlineLinkButtonClass}>
+            Explore the app
+            <ArrowRight className="ml-2 size-4" />
+          </Link>
+        }
+      />
+
+      <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+        {stages.map((stage) => (
+          <GlassCard key={stage.title} padding="md" className="h-full">
+            <div className="flex size-12 items-center justify-center rounded-2xl border border-emerald-100 bg-emerald-50 text-emerald-700 shadow-sm">
+              <stage.icon className="size-5" />
+            </div>
+            <h3 className="mt-4 text-lg font-semibold tracking-tight text-foreground">
+              {stage.title}
+            </h3>
+            <p className="mt-2 text-sm leading-6 text-muted-foreground">
+              {stage.description}
+            </p>
+          </GlassCard>
+        ))}
+      </section>
+
+      <GlassCard padding="lg" className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
+        <div className="space-y-3">
+          <p className="text-[0.72rem] font-semibold uppercase tracking-[0.26em] text-muted-foreground">
+            Startup-grade scaffold
+          </p>
+          <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground">
+            Built to be shown to users now and extended with AI providers later.
+          </h2>
+          <p className="max-w-2xl text-sm leading-7 text-muted-foreground">
+            The current scaffold includes route architecture, deterministic mock planners,
+            Supabase persistence boundaries, validation, shared premium UI primitives, and
+            testable domain services for meals, shopping lists, pantry matching, and workouts.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        <div className="grid gap-3">
+          {[
+            "Next.js App Router + TypeScript",
+            "Tailwind CSS + shadcn/ui + Framer Motion",
+            "Supabase auth and database scaffold",
+            "Typed meal and workout generation services",
+          ].map((item) => (
+            <div
+              key={item}
+              className="rounded-[1.2rem] border border-white/80 bg-white/78 px-4 py-3 text-sm font-medium text-foreground"
+            >
+              <Sparkles className="mr-2 inline size-4 text-emerald-700" />
+              {item}
+            </div>
+          ))}
         </div>
-      </main>
-    </div>
+      </GlassCard>
+    </main>
   );
 }
