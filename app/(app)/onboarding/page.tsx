@@ -1,12 +1,11 @@
-"use client";
-
 import { GlassCard } from "@/components/shared/glass-card";
 import { PageIntro } from "@/components/shared/page-intro";
 import { OnboardingForm } from "@/features/onboarding";
+import { saveOnboardingAction } from "@/app/(app)/actions";
 import { getDashboardState } from "@/lib/demo-data";
 
-export default function OnboardingPage() {
-  const { onboardingDraft } = getDashboardState();
+export default async function OnboardingPage() {
+  const { onboardingDraft } = await getDashboardState();
 
   return (
     <div className="space-y-4">
@@ -24,7 +23,7 @@ export default function OnboardingPage() {
         </GlassCard>
       </PageIntro>
 
-      <OnboardingForm initialValues={onboardingDraft} onSubmit={() => undefined} />
+      <OnboardingForm initialValues={onboardingDraft} onSubmit={saveOnboardingAction} />
     </div>
   );
 }

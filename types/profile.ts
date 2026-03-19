@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 import { profileInputSchema } from "@/lib/validation/profile";
+import { settingsInputSchema } from "@/lib/validation/settings";
 import { activityLevelSchema, budgetPeriodSchema, goalSchema, sexSchema } from "@/lib/validation/shared";
 
 export type Goal = z.infer<typeof goalSchema>;
@@ -29,11 +30,11 @@ export interface ProfilePreferences {
 
 export interface SettingsRecord {
   userId: string;
-  theme: "light" | "system";
-  measurementSystem: "metric" | "imperial";
-  notificationsEnabled: boolean;
-  weeklyCheckInDay: string;
-  treeAnimationEnabled: boolean;
+  theme: z.infer<typeof settingsInputSchema>["theme"];
+  measurementSystem: z.infer<typeof settingsInputSchema>["measurementSystem"];
+  notificationsEnabled: z.infer<typeof settingsInputSchema>["notificationsEnabled"];
+  weeklyCheckInDay: z.infer<typeof settingsInputSchema>["weeklyCheckInDay"];
+  treeAnimationEnabled: z.infer<typeof settingsInputSchema>["treeAnimationEnabled"];
   createdAt: string;
   updatedAt: string;
 }

@@ -15,8 +15,8 @@ import { PageIntro } from "@/components/shared/page-intro";
 import { outlineLinkButtonClass } from "@/lib/button-link-styles";
 import { getDashboardState } from "@/lib/demo-data";
 
-export default function DashboardPage() {
-  const state = getDashboardState();
+export default async function DashboardPage() {
+  const state = await getDashboardState();
   const todayMeals = state.pantryPlan.days[0].meals.slice(0, 3);
   const nextWorkout = state.workoutPlan.days.find((day) => day.kind === "workout");
 

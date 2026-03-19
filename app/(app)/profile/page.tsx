@@ -1,11 +1,10 @@
-"use client";
-
 import { PageIntro } from "@/components/shared/page-intro";
 import { ProfileForm, ProfileSummaryCard } from "@/features/profile";
+import { saveProfileAction } from "@/app/(app)/actions";
 import { getDashboardState } from "@/lib/demo-data";
 
-export default function ProfilePage() {
-  const { profile } = getDashboardState();
+export default async function ProfilePage() {
+  const { profile } = await getDashboardState();
 
   return (
     <div className="space-y-4">
@@ -17,7 +16,7 @@ export default function ProfilePage() {
         secondaryAction={{ label: "Settings", href: "/settings" }}
       />
       <ProfileSummaryCard profile={profile} />
-      <ProfileForm initialValues={profile} onSubmit={() => undefined} />
+      <ProfileForm initialValues={profile} onSubmit={saveProfileAction} />
     </div>
   );
 }

@@ -9,8 +9,8 @@ import {
 } from "@/lib/button-link-styles";
 import { getDashboardState } from "@/lib/demo-data";
 
-export default function MealPlanningPage() {
-  const { pantryPlan, budgetPlan } = getDashboardState();
+export default async function MealPlanningPage() {
+  const { pantryPlan, budgetPlan } = await getDashboardState();
 
   return (
     <div className="space-y-4">

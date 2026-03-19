@@ -2,8 +2,8 @@ import { PageIntro } from "@/components/shared/page-intro";
 import { WorkoutPlanView } from "@/features/workout-planning";
 import { getDashboardState } from "@/lib/demo-data";
 
-export default function WorkoutPlanningPage() {
-  const { workoutPlan } = getDashboardState();
+export default async function WorkoutPlanningPage() {
+  const { workoutPlan } = await getDashboardState();
 
   return (
     <div className="space-y-4">

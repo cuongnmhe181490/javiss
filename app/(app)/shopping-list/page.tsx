@@ -2,8 +2,8 @@ import { PageIntro } from "@/components/shared/page-intro";
 import { ShoppingListView } from "@/features/shopping-list";
 import { getDashboardState } from "@/lib/demo-data";
 
-export default function ShoppingListPage() {
-  const { pantryPlan } = getDashboardState();
+export default async function ShoppingListPage() {
+  const { pantryPlan } = await getDashboardState();
 
   return (
     <div className="space-y-4">

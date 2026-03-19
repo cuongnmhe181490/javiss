@@ -8,7 +8,7 @@ export default async function MealPlanDetailPage({
   params: Promise<{ planId: string }>;
 }) {
   const { planId } = await params;
-  const { pantryPlan, budgetPlan } = getDashboardState();
+  const { pantryPlan, budgetPlan } = await getDashboardState();
   const plan = planId === "budget" ? budgetPlan : pantryPlan;
 
   return (

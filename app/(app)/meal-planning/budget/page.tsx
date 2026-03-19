@@ -2,8 +2,8 @@ import { PageIntro } from "@/components/shared/page-intro";
 import { MealPlanView } from "@/features/meal-planning";
 import { getDashboardState } from "@/lib/demo-data";
 
-export default function BudgetMealPlanPage() {
-  const { budgetPlan } = getDashboardState();
+export default async function BudgetMealPlanPage() {
+  const { budgetPlan } = await getDashboardState();
 
   return (
     <div className="space-y-4">

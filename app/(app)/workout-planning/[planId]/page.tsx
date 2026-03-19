@@ -8,7 +8,7 @@ export default async function WorkoutPlanDetailPage({
   params: Promise<{ planId: string }>;
 }) {
   await params;
-  const { workoutPlan } = getDashboardState();
+  const { workoutPlan } = await getDashboardState();
 
   return (
     <div className="space-y-4">
