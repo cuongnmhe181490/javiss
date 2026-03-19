@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     template: "%s | Javiss",
   },
   description:
-    "A personalized healthy lifestyle app for pantry-aware meals, budget-aware planning, workouts, shopping lists, and elegant consistency tracking.",
+    "Ung dung song lanh manh ca nhan hoa cho bua an theo pantry, lap ke hoach theo ngan sach, tap luyen, danh sach mua sam va theo doi su deu dan.",
 };
 
 export default function RootLayout({
@@ -29,7 +29,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="vi"
       className={`${plusJakartaSans.variable} ${fraunces.variable} h-full scroll-smooth antialiased`}
     >
       <body className="min-h-full bg-background text-foreground">

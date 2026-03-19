@@ -31,12 +31,12 @@ type AppShellProps = {
 
 export function AppShell({
   brandName = "Javiss",
-  tagline = "Personalized nutrition, training, and habit tracking.",
+  tagline = "Dinh duong, tap luyen va theo doi thoi quen ca nhan.",
   navItems,
   primaryAction,
   secondaryAction,
-  statusLabel = "Today",
-  statusValue = "Plan is ready",
+  statusLabel = "Hom nay",
+  statusValue = "Ke hoach da san sang",
   children,
   className,
 }: AppShellProps) {

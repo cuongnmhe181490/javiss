@@ -10,7 +10,12 @@ type PantryItemListProps = {
   onMarkBought?: (item: PantryItemRecord) => void;
 };
 
-export function PantryItemList({ items, className, onToggleHave, onMarkBought }: PantryItemListProps) {
+export function PantryItemList({
+  items,
+  className,
+  onToggleHave,
+  onMarkBought,
+}: PantryItemListProps) {
   const grouped = items.reduce<Record<string, PantryItemRecord[]>>((accumulator, item) => {
     accumulator[item.category] ??= [];
     accumulator[item.category].push(item);
@@ -27,16 +32,18 @@ export function PantryItemList({ items, className, onToggleHave, onMarkBought }:
       <div className="flex items-start justify-between gap-4">
         <div>
           <p className="text-xs font-medium uppercase tracking-[0.28em] text-neutral-500">Pantry</p>
-          <h2 className="mt-2 text-2xl font-semibold text-neutral-950">What is already at home</h2>
+          <h2 className="mt-2 text-2xl font-semibold text-neutral-950">
+            Nhung gi da co san trong nha
+          </h2>
         </div>
         <span className="rounded-full bg-neutral-100 px-3 py-1 text-xs font-medium text-neutral-700">
-          {items.length} items
+          {items.length} mon
         </span>
       </div>
 
       {items.length === 0 ? (
         <p className="rounded-2xl border border-dashed border-neutral-200 bg-neutral-50 px-4 py-8 text-sm text-neutral-600">
-          No pantry items yet. Add a few staples to improve the first plan.
+          Chua co mon nao trong pantry. Them vai nguyen lieu co ban de cai thien ke hoach dau tien.
         </p>
       ) : null}
 
@@ -59,7 +66,7 @@ export function PantryItemList({ items, className, onToggleHave, onMarkBought }:
                     <h4 className="font-medium text-neutral-950">{item.name}</h4>
                     <p className="text-sm text-neutral-600">
                       {item.quantity} {item.unit}
-                      {item.expiresOn ? ` · expires ${item.expiresOn}` : ""}
+                      {item.expiresOn ? ` / het han ${item.expiresOn}` : ""}
                     </p>
                   </div>
                   <div className="flex flex-wrap gap-2">
@@ -69,7 +76,7 @@ export function PantryItemList({ items, className, onToggleHave, onMarkBought }:
                         onClick={() => onToggleHave(item)}
                         type="button"
                       >
-                        Already have
+                        Da co
                       </button>
                     ) : null}
                     {onMarkBought ? (
@@ -78,7 +85,7 @@ export function PantryItemList({ items, className, onToggleHave, onMarkBought }:
                         onClick={() => onMarkBought(item)}
                         type="button"
                       >
-                        Bought
+                        Da mua
                       </button>
                     ) : null}
                   </div>

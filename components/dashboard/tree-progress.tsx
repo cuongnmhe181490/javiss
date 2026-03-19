@@ -26,28 +26,28 @@ const stageMeta: Record<
   }
 > = {
   seed: {
-    label: "Seed",
-    description: "The habit is starting to anchor.",
+    label: "Hat giong",
+    description: "Thoi quen bat dau duoc hinh thanh.",
     Icon: Sprout,
   },
   sprout: {
-    label: "Sprout",
-    description: "Consistency is showing visible growth.",
+    label: "Mam non",
+    description: "Su deu dan dang bat dau thay ro.",
     Icon: Leaf,
   },
   young_tree: {
-    label: "Young tree",
-    description: "The routine is taking root.",
+    label: "Cay non",
+    description: "Nep song moi dang dan be re.",
     Icon: TreePine,
   },
   mature_tree: {
-    label: "Mature tree",
-    description: "Reliable momentum with stable rewards.",
+    label: "Cay truong thanh",
+    description: "Dong luc da on dinh va ben vung hon.",
     Icon: TreePine,
   },
   flowering_tree: {
-    label: "Flowering tree",
-    description: "A durable system with strong follow-through.",
+    label: "Cay ra hoa",
+    description: "He thong thoi quen da ben vung va de duy tri.",
     Icon: Flower2,
   },
 };
@@ -114,7 +114,7 @@ export function TreeProgress({
             </div>
             <div>
               <p className="text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-muted-foreground">
-                Tree stage
+                Giai doan cay
               </p>
               <h3 className="text-2xl font-semibold tracking-tight text-foreground">
                 {meta.label}
@@ -128,13 +128,14 @@ export function TreeProgress({
 
           <div className="grid gap-3 sm:grid-cols-3">
             <StatRow label="Current streak" value={`${streak} days`} />
-            <StatRow label="Best streak" value={`${bestStreak} days`} />
-            <StatRow label="Weekly consistency" value={`${weeklyConsistency}%`} />
+            <StatRow label="Chuoi hien tai" value={`${streak} ngay`} />
+            <StatRow label="Ky luc" value={`${bestStreak} ngay`} />
+            <StatRow label="Do deu tuan nay" value={`${weeklyConsistency}%`} />
           </div>
 
           <div className="space-y-2">
             <div className="flex items-center justify-between text-sm">
-              <span className="font-medium text-foreground">Growth progress</span>
+              <span className="font-medium text-foreground">Tien do phat trien</span>
               <span className="text-muted-foreground">{Math.round(progress)}%</span>
             </div>
             <div className="h-3 overflow-hidden rounded-full bg-emerald-50">

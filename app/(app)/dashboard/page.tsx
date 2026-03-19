@@ -23,20 +23,20 @@ export default async function DashboardPage() {
   return (
     <div className="space-y-4">
       <PageIntro
-        eyebrow="Dashboard"
-        title={`Healthy momentum for ${state.profile.displayName}`}
-        description="Meals, workouts, shopping, and consistency all read from the same structured mock profile so the architecture is ready for real persistence."
-        primaryAction={{ label: "Plan from pantry", href: "/meal-planning/pantry" }}
-        secondaryAction={{ label: "Review shopping list", href: "/shopping-list" }}
+        eyebrow="Tong quan"
+        title={`Tien do song lanh manh cua ${state.profile.displayName}`}
+        description="Bua an, lich tap, mua sam va muc do deu dan dang cung doc tu mot nguon du lieu co cau truc, san sang cho persistence that."
+        primaryAction={{ label: "Lap tu pantry", href: "/meal-planning/pantry" }}
+        secondaryAction={{ label: "Xem danh sach mua sam", href: "/shopping-list" }}
       >
         <GlassCard padding="md" className="grid gap-3">
           <p className="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-muted-foreground">
-            Today at a glance
+            Tong quan hom nay
           </p>
           <div className="grid gap-3 sm:grid-cols-2">
             <div className="rounded-[1.2rem] border border-white/80 bg-white/78 p-4">
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground">
-                Calories
+                Calo
               </p>
               <p className="mt-1 text-2xl font-semibold tracking-tight text-foreground">
                 {Math.round(state.pantryPlan.days[0].dailyCalories)}
@@ -44,10 +44,10 @@ export default async function DashboardPage() {
             </div>
             <div className="rounded-[1.2rem] border border-white/80 bg-white/78 p-4">
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground">
-                Workout
+                Tap luyen
               </p>
               <p className="mt-1 text-2xl font-semibold tracking-tight text-foreground">
-                {nextWorkout?.estimatedDurationMin ?? 20} min
+                {nextWorkout?.estimatedDurationMin ?? 20} phut
               </p>
             </div>
           </div>
@@ -56,29 +56,29 @@ export default async function DashboardPage() {
 
       <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         <MetricCard
-          label="Current streak"
-          value={`${state.streak.current} days`}
-          detail="Meals and workouts completed this week are feeding the tree progression."
-          delta={`Best ${state.streak.best}`}
+          label="Chuoi hien tai"
+          value={`${state.streak.current} ngay`}
+          detail="Bua an va buoi tap da hoan thanh trong tuan dang dong gop vao tien do phat trien cua cay."
+          delta={`Ky luc ${state.streak.best}`}
           icon={Trees}
           accent="positive"
         />
         <MetricCard
-          label="Weekly budget"
+          label="Ngan sach tuan"
           value={`$${state.profile.budgetAmount}`}
-          detail="Budget-aware planning keeps cost aligned with cooking time and macro goals."
+          detail="Lap ke hoach theo ngan sach giup giu chi phi phu hop voi thoi gian nau va muc tieu macro."
           icon={Target}
         />
         <MetricCard
-          label="Pantry coverage"
-          value={`${state.pantryPlan.shoppingList.totals.pantryCoveredItems} items`}
-          detail="Existing inventory is subtracted before the buy list is finalized."
+          label="Do phu pantry"
+          value={`${state.pantryPlan.shoppingList.totals.pantryCoveredItems} mon`}
+          detail="Nguyen lieu dang co duoc tru ra truoc khi chot danh sach can mua."
           icon={ShoppingBasket}
         />
         <MetricCard
-          label="Training week"
-          value={`${state.workoutPlan.daysPerWeek} sessions`}
-          detail="Equipment-aware sessions are distributed across preferred training days."
+          label="Lich tap tuan"
+          value={`${state.workoutPlan.daysPerWeek} buoi`}
+          detail="Cac buoi tap duoc phan bo theo so thich va thiet bi san co."
           icon={CalendarCheck2}
         />
       </section>
@@ -96,17 +96,17 @@ export default async function DashboardPage() {
           <div className="flex items-center justify-between gap-3">
             <div>
               <p className="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-muted-foreground">
-                Today&apos;s meals
+                Bua an hom nay
               </p>
               <h2 className="mt-1 text-2xl font-semibold tracking-tight text-foreground">
-                Pantry-first schedule
+                Lich uu tien pantry
               </h2>
             </div>
             <Link
               href="/meal-planning/pantry"
               className={outlineLinkButtonClass}
             >
-              Open meal plan
+              Mo thuc don
             </Link>
           </div>
           <div className="mt-5 grid gap-3">
@@ -126,9 +126,9 @@ export default async function DashboardPage() {
                 </div>
                 <p className="mt-2 text-sm leading-6 text-muted-foreground">{meal.description}</p>
                 <div className="mt-3 flex flex-wrap gap-2 text-xs text-muted-foreground">
-                  <span>{Math.round(meal.estimatedNutrition.calories)} cal</span>
-                  <span>{Math.round(meal.estimatedNutrition.protein)}g protein</span>
-                  <span>{meal.prepTimeMinutes + meal.cookTimeMinutes} min total</span>
+                  <span>{Math.round(meal.estimatedNutrition.calories)} calo</span>
+                  <span>{Math.round(meal.estimatedNutrition.protein)}g dam</span>
+                  <span>{meal.prepTimeMinutes + meal.cookTimeMinutes} phut tong</span>
                 </div>
               </div>
             ))}
@@ -139,30 +139,30 @@ export default async function DashboardPage() {
           <div className="flex items-center justify-between gap-3">
             <div>
               <p className="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-muted-foreground">
-                Next session
+                Buoi tap tiep theo
               </p>
               <h2 className="mt-1 text-2xl font-semibold tracking-tight text-foreground">
-                {nextWorkout?.label ?? "Recovery day"}
+                {nextWorkout?.label ?? "Ngay hoi phuc"}
               </h2>
             </div>
             <Link
               href="/workout-planning"
               className={outlineLinkButtonClass}
             >
-              Open workouts
+              Mo lich tap
             </Link>
           </div>
           <div className="mt-5 grid gap-3">
             <div className="rounded-[1.25rem] border border-white/80 bg-white/74 p-4">
               <div className="flex items-center justify-between gap-3">
-                <p className="text-sm font-medium text-foreground">{nextWorkout?.focus ?? "Light movement"}</p>
+                <p className="text-sm font-medium text-foreground">{nextWorkout?.focus ?? "Van dong nhe"}</p>
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   <Timer className="size-4" />
-                  {nextWorkout?.estimatedDurationMin ?? 20} min
+                  {nextWorkout?.estimatedDurationMin ?? 20} phut
                 </div>
               </div>
               <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                {nextWorkout?.notes ?? "Walk, mobility, and a lower-stress recovery block."}
+                {nextWorkout?.notes ?? "Di bo, gian co va mot khung hoi phuc nhe nhang hon."}
               </p>
               <div className="mt-4 flex flex-wrap gap-2">
                 {(nextWorkout?.targetPatterns ?? []).map((pattern) => (
@@ -177,10 +177,10 @@ export default async function DashboardPage() {
             </div>
             <div className="rounded-[1.25rem] border border-white/80 bg-white/74 p-4">
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground">
-                Integration status
+                Trang thai tich hop
               </p>
               <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                Dashboard cards are already reading from the same typed meal and workout generators used by the dedicated planning routes.
+                Cac the trong trang tong quan dang doc cung bo generator co typing duoc dung o cac trang lap ke hoach chuyen biet.
               </p>
             </div>
           </div>

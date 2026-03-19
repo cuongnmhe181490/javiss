@@ -15,7 +15,7 @@ export function WorkoutDayCard({ day }: WorkoutDayCardProps) {
         <div>
           <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-[0.18em] text-zinc-500">
             <CalendarDays className="h-4 w-4" />
-            Day {day.index + 1}
+            Ngay {day.index + 1}
           </div>
           <h3 className="mt-2 text-xl font-semibold tracking-tight text-zinc-950">{day.label}</h3>
           <p className="mt-1 text-sm text-zinc-600">{day.focus}</p>
@@ -23,7 +23,7 @@ export function WorkoutDayCard({ day }: WorkoutDayCardProps) {
         <div className="rounded-2xl bg-zinc-100/80 px-4 py-3 text-right">
           <div className="flex items-center gap-2 text-sm font-medium text-zinc-700">
             <TimerReset className="h-4 w-4" />
-            {day.estimatedDurationMin} min
+            {day.estimatedDurationMin} phut
           </div>
           <p className="mt-1 text-xs uppercase tracking-[0.16em] text-zinc-500">{day.kind}</p>
         </div>
@@ -35,10 +35,10 @@ export function WorkoutDayCard({ day }: WorkoutDayCardProps) {
         <div className="mt-5 rounded-3xl bg-sky-50 p-4 text-sm text-sky-950">
           <div className="flex items-center gap-2 font-semibold">
             <MoonStar className="h-4 w-4" />
-            Recovery day
+            Ngay hoi phuc
           </div>
           <p className="mt-2">
-            Use this time for walking, mobility, sleep, and light conditioning if you want it.
+            Tan dung thoi gian nay de di bo, gian co, ngu du va them van dong nhe neu phu hop.
           </p>
         </div>
       ) : (

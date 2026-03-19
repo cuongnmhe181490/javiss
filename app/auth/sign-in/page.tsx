@@ -15,21 +15,21 @@ export default function SignInPage() {
           <KeyRound className="size-6" />
         </div>
         <p className="mt-6 text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-muted-foreground">
-          Sign in
+          Dang nhap
         </p>
         <h1 className="mt-3 text-3xl font-semibold tracking-tight text-foreground">
-          Continue into your planning workspace.
+          Tiep tuc vao khong gian lap ke hoach cua ban.
         </h1>
         <p className="mt-3 text-sm leading-6 text-muted-foreground">
-          Auth is scaffolded for Supabase SSR. Until credentials are configured, this project uses mock user data to drive the app shell and domain flows.
+          Xac thuc da duoc dung khung cho Supabase SSR. Truoc khi cau hinh secret that, du an dang dung du lieu mock de van co the trai nghiem day du luong chinh.
         </p>
         <div className="mt-8 grid gap-3">
           <Link href="/dashboard" className={primaryLinkButtonClass}>
-            Enter demo dashboard
+            Vao ban demo
             <ArrowRight className="ml-2 size-4" />
           </Link>
           <Link href="/auth/sign-up" className={outlineLinkButtonClass}>
-            Create an account
+            Tao tai khoan
           </Link>
         </div>
       </GlassCard>

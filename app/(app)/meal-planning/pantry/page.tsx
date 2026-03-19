@@ -8,11 +8,11 @@ export default async function PantryMealPlanPage() {
   return (
     <div className="space-y-4">
       <PageIntro
-        eyebrow="Plan from pantry"
-        title="Use existing ingredients first and reduce waste across the week."
-        description="This weekly plan is produced by the deterministic meal engine using pantry overlap, cooking time, disliked foods, and ingredient reuse scoring."
-        primaryAction={{ label: "View shopping list", href: "/shopping-list" }}
-        secondaryAction={{ label: "Switch to budget mode", href: "/meal-planning/budget" }}
+        eyebrow="Lap tu pantry"
+        title="Uu tien nguyen lieu dang co va giam lang phi trong ca tuan."
+        description="Ke hoach tuan nay duoc tao boi meal engine deterministic dua tren muc do trung pantry, thoi gian nau, mon khong thich va diem tai su dung nguyen lieu."
+        primaryAction={{ label: "Xem danh sach mua sam", href: "/shopping-list" }}
+        secondaryAction={{ label: "Chuyen sang che do ngan sach", href: "/meal-planning/budget" }}
       />
       <MealPlanView plan={pantryPlan} />
     </div>

@@ -13,11 +13,11 @@ export default async function WorkoutPlanDetailPage({
   return (
     <div className="space-y-4">
       <PageIntro
-        eyebrow="Workout detail"
-        title="Current weekly workout plan"
-        description="The dynamic workout route already resolves a typed weekly schedule, exercise details, and substitution options for each session."
-        primaryAction={{ label: "Back to workouts", href: "/workout-planning" }}
-        secondaryAction={{ label: "Dashboard", href: "/dashboard" }}
+        eyebrow="Chi tiet lich tap"
+        title="Lich tap hang tuan hien tai"
+        description="Route lich tap dong da tra ve day du lich tuan co typing, chi tiet bai tap va cac phuong an thay the cho tung buoi."
+        primaryAction={{ label: "Quay lai lich tap", href: "/workout-planning" }}
+        secondaryAction={{ label: "Tong quan", href: "/dashboard" }}
       />
       <WorkoutPlanView plan={workoutPlan} />
     </div>

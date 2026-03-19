@@ -9,27 +9,27 @@ import { outlineLinkButtonClass } from "@/lib/button-link-styles";
 
 const stages = [
   {
-    title: "Plan from pantry",
+    title: "Lap ke hoach tu pantry",
     description:
-      "Use what is already at home first, then calculate only what still needs to be bought.",
+      "Uu tien nguyen lieu dang co san trong nha, sau do moi tinh phan thuc su can mua them.",
     icon: ShoppingBasket,
   },
   {
-    title: "Shape the week around budget",
+    title: "Toi uu ca tuan theo ngan sach",
     description:
-      "Balance calories, macros, prep time, and cost without dropping into generic AI output.",
+      "Can bang calo, macro, thoi gian che bien va chi phi ma van giu duoc tinh thuc te.",
     icon: HeartPulse,
   },
   {
-    title: "Keep workouts realistic",
+    title: "Giup lich tap thuc te hon",
     description:
-      "Generate weekly sessions for home or gym with substitutions when equipment is limited.",
+      "Tao lich tap hang tuan cho o nha hoac phong gym, co bai thay the khi thieu dung cu.",
     icon: Bot,
   },
   {
-    title: "Turn consistency into visible progress",
+    title: "Bien su deu dan thanh tien bo de nhin thay",
     description:
-      "Elegant streak tracking and tree growth make adherence tangible without becoming childish.",
+      "Chuoi ngay va cay phat trien giup ban thay tien bo ro rang ma van giu giao dien thanh lich.",
     icon: Trees,
   },
 ];
@@ -38,23 +38,23 @@ export default function Home() {
   return (
     <main className="mx-auto flex w-full max-w-[1320px] flex-col gap-6 px-4 py-4 sm:px-6 lg:px-8">
       <HeroSection
-        title="Plan healthier weeks with pantry-aware meals, realistic workouts, and a calm premium interface."
-        description="Javiss treats pantry items, budget, prep time, profile preferences, and workout equipment as structured inputs first. The result is a product-shaped planning system, not an LLM demo."
-        primaryAction={{ label: "Open Dashboard", href: "/dashboard" }}
-        secondaryAction={{ label: "Create Account", href: "/auth/sign-up" }}
+        title="Len ke hoach song lanh manh cho ca tuan voi bua an theo pantry, lich tap thuc te va giao dien cao cap, de dung."
+        description="Javiss xem pantry, ngan sach, thoi gian nau, so thich ca nhan va thiet bi tap luyen la du lieu cau truc ngay tu dau. Ket qua la mot san pham thuc su huu dung, khong phai demo AI don thuan."
+        primaryAction={{ label: "Mo tong quan", href: "/dashboard" }}
+        secondaryAction={{ label: "Tao tai khoan", href: "/auth/sign-up" }}
         stats={[
-          { label: "Planning modes", value: "Pantry + Budget" },
-          { label: "Workout coverage", value: "Home + Gym" },
-          { label: "Consistency loop", value: "Streak + Tree" },
-          { label: "Architecture", value: "Deterministic-first" },
+          { label: "Che do lap ke hoach", value: "Pantry + Ngan sach" },
+          { label: "Pham vi tap luyen", value: "O nha + Gym" },
+          { label: "Vong lap dong luc", value: "Chuoi ngay + Cay" },
+          { label: "Kien truc", value: "Deterministic truoc" },
         ]}
       >
         <GlassCard padding="md" className="grid gap-3">
           <p className="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-muted-foreground">
-            Implementation phases
+            Cac giai doan thuc hien
           </p>
           <div className="grid gap-2">
-            {["Planning", "Scaffolding", "Core features", "Integration", "QA polish"].map(
+            {["Len ke hoach", "Dung khung", "Tinh nang cot loi", "Tich hop", "Hoan thien QA"].map(
               (step, index) => (
                 <div
                   key={step}
@@ -74,12 +74,12 @@ export default function Home() {
       <FeatureGrid />
 
       <SectionHeader
-        eyebrow="Product strategy"
-        title="Structured app logic first, AI extension points second"
-        description="The scaffold already separates route composition, domain services, data contracts, and the future provider boundary so recommendations can be upgraded without rewriting the app."
+        eyebrow="Chien luoc san pham"
+        title="Logic ung dung co cau truc truoc, diem mo rong AI sau"
+        description="Bo khung hien tai da tach route, domain service, data contract va ranh gioi provider de co the nang cap de xuat AI ma khong phai viet lai ung dung."
         action={
           <Link href="/dashboard" className={outlineLinkButtonClass}>
-            Explore the app
+            Kham pha ung dung
             <ArrowRight className="ml-2 size-4" />
           </Link>
         }
@@ -104,23 +104,23 @@ export default function Home() {
       <GlassCard padding="lg" className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
         <div className="space-y-3">
           <p className="text-[0.72rem] font-semibold uppercase tracking-[0.26em] text-muted-foreground">
-            Startup-grade scaffold
+            Bo khung chat luong startup
           </p>
           <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground">
-            Built to be shown to users now and extended with AI providers later.
+            San sang de demo voi nguoi dung ngay bay gio va mo rong AI sau nay.
           </h2>
           <p className="max-w-2xl text-sm leading-7 text-muted-foreground">
-            The current scaffold includes route architecture, deterministic mock planners,
-            Supabase persistence boundaries, validation, shared premium UI primitives, and
-            testable domain services for meals, shopping lists, pantry matching, and workouts.
+            Bo khung hien tai da co kien truc route, bo lap ke hoach mock theo huong deterministic,
+            ranh gioi persistence voi Supabase, validation, UI primitive dung chung,
+            va service co the test duoc cho bua an, danh sach mua sam, pantry va tap luyen.
           </p>
         </div>
         <div className="grid gap-3">
           {[
             "Next.js App Router + TypeScript",
             "Tailwind CSS + shadcn/ui + Framer Motion",
-            "Supabase auth and database scaffold",
-            "Typed meal and workout generation services",
+            "Khung auth va database voi Supabase",
+            "Service tao ke hoach bua an va tap luyen co typing day du",
           ].map((item) => (
             <div
               key={item}

@@ -11,10 +11,10 @@ export default async function PantryPage() {
     <div className="space-y-4">
       <PageIntro
         eyebrow="Pantry"
-        title="Keep inventory current so meals and shopping stay accurate."
-        description="Pantry items are the first structured input in the meal planning engine. The scaffold already normalizes ingredients before matching them to recipes and shopping needs."
-        primaryAction={{ label: "Generate pantry plan", href: "/meal-planning/pantry" }}
-        secondaryAction={{ label: "Open shopping list", href: "/shopping-list" }}
+        title="Cap nhat ton kho de bua an va mua sam luon chinh xac."
+        description="Pantry la dau vao co cau truc dau tien trong bo may lap ke hoach bua an. Scaffold da chuan hoa nguyen lieu truoc khi doi chieu voi cong thuc va nhu cau mua sam."
+        primaryAction={{ label: "Tao ke hoach pantry", href: "/meal-planning/pantry" }}
+        secondaryAction={{ label: "Mo danh sach mua sam", href: "/shopping-list" }}
       />
       <section className="grid gap-4 xl:grid-cols-[0.95fr_1.05fr]">
         <div className="space-y-4">
@@ -25,7 +25,7 @@ export default async function PantryPage() {
           <form action={clearPantryAction}>
             <GlassCard padding="md" className="flex items-center justify-between gap-3">
               <div>
-                <p className="text-sm font-semibold text-foreground">Reset pantry demo state</p>
+                <p className="text-sm font-semibold text-foreground">Dat lai pantry demo</p>
                 <p className="text-sm text-muted-foreground">
                   Xoa toan bo pantry da luu trong trinh duyet hien tai.
                 </p>
@@ -34,7 +34,7 @@ export default async function PantryPage() {
                 type="submit"
                 className="inline-flex h-10 items-center justify-center rounded-xl border border-border bg-white/80 px-4 text-sm font-medium text-foreground transition hover:bg-white"
               >
-                Clear pantry
+                Xoa pantry
               </button>
             </GlassCard>
           </form>

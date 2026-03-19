@@ -8,11 +8,11 @@ export default async function WorkoutPlanningPage() {
   return (
     <div className="space-y-4">
       <PageIntro
-        eyebrow="Workout planning"
-        title="Generate weekly training around equipment, location, and schedule."
-        description="The workout planner uses a typed exercise library, movement-pattern coverage, preferred days, and substitution logic so home and gym plans stay realistic."
-        primaryAction={{ label: "View workout detail", href: "/workout-planning/current" }}
-        secondaryAction={{ label: "Open dashboard", href: "/dashboard" }}
+        eyebrow="Lap ke hoach tap luyen"
+        title="Tao lich tap theo thiet bi, dia diem va lich ca nhan."
+        description="Bo lap ke hoach tap dung thu vien bai tap co typing, do phu movement pattern, ngay tap uu tien va logic thay the de lich tap o nha hay phong gym van thuc te."
+        primaryAction={{ label: "Xem chi tiet lich tap", href: "/workout-planning/current" }}
+        secondaryAction={{ label: "Mo tong quan", href: "/dashboard" }}
       />
       <WorkoutPlanView plan={workoutPlan} />
     </div>

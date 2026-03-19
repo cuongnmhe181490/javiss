@@ -72,7 +72,7 @@ export function OnboardingForm({
   initialValues,
   onSubmit,
   className,
-  submitLabel = "Finish setup",
+  submitLabel = "Hoan tat thiet lap",
 }: OnboardingFormProps) {
   const [error, setError] = useState<string | null>(null);
   const [isPending, setIsPending] = useState(false);
@@ -132,7 +132,7 @@ export function OnboardingForm({
 
         const parsed = onboardingDraftSchema.safeParse(nextValue);
         if (!parsed.success) {
-          setError(parsed.error.issues[0]?.message ?? "Please review the onboarding fields.");
+          setError(parsed.error.issues[0]?.message ?? "Vui long kiem tra lai cac truong onboarding.");
           setIsPending(false);
           return;
         }
@@ -140,7 +140,7 @@ export function OnboardingForm({
         try {
           await onSubmit(parsed.data);
         } catch (submissionError) {
-          setError(submissionError instanceof Error ? submissionError.message : "Unable to finish setup.");
+          setError(submissionError instanceof Error ? submissionError.message : "Khong the hoan tat thiet lap.");
         } finally {
           setIsPending(false);
         }
@@ -151,107 +151,107 @@ export function OnboardingForm({
           <p className="text-xs font-medium uppercase tracking-[0.28em] text-neutral-500">
             Onboarding
           </p>
-          <h2 className="mt-2 text-2xl font-semibold text-neutral-950">Set up your first week</h2>
+          <h2 className="mt-2 text-2xl font-semibold text-neutral-950">Thiet lap tuan dau tien</h2>
         </div>
         <Button type="submit" disabled={isPending}>
-          {isPending ? "Saving..." : submitLabel}
+          {isPending ? "Dang luu..." : submitLabel}
         </Button>
       </div>
 
       <label className="space-y-2">
-        <span className="text-sm font-medium text-neutral-700">Setup mode</span>
+        <span className="text-sm font-medium text-neutral-700">Che do thiet lap</span>
         <select
           className="h-12 w-full rounded-2xl border border-black/10 bg-white px-4 text-sm text-neutral-950 outline-none transition focus:border-neutral-400"
           defaultValue={initialValues.setupMode}
           name="setupMode"
         >
-          <option value="guided">Guided</option>
-          <option value="manual">Manual</option>
-          <option value="imported">Import from existing data</option>
+          <option value="guided">Co huong dan</option>
+          <option value="manual">Thu cong</option>
+          <option value="imported">Nhap tu du lieu san co</option>
         </select>
       </label>
 
       <div className="grid gap-4 md:grid-cols-2">
-        <Field label="Display name" name="displayName" defaultValue={initialValues.profile.displayName} />
-        <Field label="Age" name="age" type="number" defaultValue={initialValues.profile.age} />
+        <Field label="Ten hien thi" name="displayName" defaultValue={initialValues.profile.displayName} />
+        <Field label="Tuoi" name="age" type="number" defaultValue={initialValues.profile.age} />
         <SelectField
-          label="Sex"
+          label="Gioi tinh"
           name="sex"
           options={sexOptions}
           defaultValue={initialValues.profile.sex ?? "prefer_not_to_say"}
         />
-        <SelectField label="Goal" name="goal" options={goalOptions} defaultValue={initialValues.profile.goal} />
+        <SelectField label="Muc tieu" name="goal" options={goalOptions} defaultValue={initialValues.profile.goal} />
         <SelectField
-          label="Activity level"
+          label="Muc do van dong"
           name="activityLevel"
           options={activityOptions}
           defaultValue={initialValues.profile.activityLevel}
         />
-        <Field label="Height cm" name="heightCm" type="number" defaultValue={initialValues.profile.heightCm ?? ""} />
-        <Field label="Weight kg" name="weightKg" type="number" defaultValue={initialValues.profile.weightKg ?? ""} />
+        <Field label="Chieu cao (cm)" name="heightCm" type="number" defaultValue={initialValues.profile.heightCm ?? ""} />
+        <Field label="Can nang (kg)" name="weightKg" type="number" defaultValue={initialValues.profile.weightKg ?? ""} />
         <Field
-          label="Target weight kg"
+          label="Can nang muc tieu (kg)"
           name="targetWeightKg"
           type="number"
           defaultValue={initialValues.profile.targetWeightKg ?? ""}
         />
         <Field
-          label="Meals per day"
+          label="So bua moi ngay"
           name="mealsPerDay"
           type="number"
           defaultValue={initialValues.profile.mealsPerDay}
         />
         <Field
-          label="Max cooking time"
+          label="Thoi gian nau toi da"
           name="maxCookingTimeMin"
           type="number"
           defaultValue={initialValues.profile.maxCookingTimeMin}
         />
         <Field
-          label="Budget amount"
+          label="Muc ngan sach"
           name="budgetAmount"
           type="number"
           defaultValue={initialValues.profile.budgetAmount ?? ""}
         />
         <SelectField
-          label="Budget period"
+          label="Chu ky ngan sach"
           name="budgetPeriod"
           options={budgetPeriodOptions}
           defaultValue={initialValues.profile.budgetPeriod ?? "weekly"}
         />
-        <Field label="Location" name="location" defaultValue={initialValues.profile.location ?? ""} />
+        <Field label="Dia diem" name="location" defaultValue={initialValues.profile.location ?? ""} />
       </div>
 
       <div className="grid gap-4 md:grid-cols-2">
         <TextAreaField
-          label="Dietary tags"
+          label="Nhan an uong"
           name="dietaryTagsCsv"
           defaultValue={joinCsvList(initialValues.profile.dietaryTags)}
         />
         <TextAreaField
-          label="Allergies"
+          label="Di ung"
           name="allergiesCsv"
           defaultValue={joinCsvList(initialValues.profile.allergies)}
         />
         <TextAreaField
-          label="Disliked foods"
+          label="Mon khong thich"
           name="dislikedFoodsCsv"
           defaultValue={joinCsvList(initialValues.profile.dislikedFoods)}
         />
         <TextAreaField
-          label="Cuisine preferences"
+          label="Am thuc yeu thich"
           name="cuisinePreferencesCsv"
           defaultValue={joinCsvList(initialValues.profile.cuisinePreferences)}
         />
         <TextAreaField
-          label="Starter pantry"
+          label="Pantry khoi dau"
           name="starterPantryCsv"
           defaultValue={initialValues.pantryItems.map((item) => item.name).join(", ")}
-          hint="Add items separated by commas to prefill the pantry."
+          hint="Them mon cach nhau boi dau phay de dien san vao pantry."
         />
       </div>
 
-      <ChoiceGroup label="Workout equipment">
+      <ChoiceGroup label="Thiet bi tap luyen">
         {equipmentOptions.map((option) => (
           <CheckboxPill
             key={option}
@@ -263,7 +263,7 @@ export function OnboardingForm({
         ))}
       </ChoiceGroup>
 
-      <ChoiceGroup label="Preferred workout days">
+      <ChoiceGroup label="Ngay tap uu tien">
         {weekdayOptions.map((option) => (
           <CheckboxPill
             key={option}

@@ -8,11 +8,11 @@ export default async function ShoppingListPage() {
   return (
     <div className="space-y-4">
       <PageIntro
-        eyebrow="Shopping list"
-        title="What to buy after pantry reconciliation."
-        description="The list is aggregated from the saved meal plan, duplicate ingredients are merged, and pantry quantities are subtracted before final grouping by category."
-        primaryAction={{ label: "Open pantry plan", href: "/meal-planning/pantry" }}
-        secondaryAction={{ label: "Review pantry", href: "/pantry" }}
+        eyebrow="Danh sach mua sam"
+        title="Nhung gi can mua sau khi doi chieu pantry."
+        description="Danh sach duoc tong hop tu ke hoach bua an da luu, cac nguyen lieu trung lap duoc gop lai, va so luong dang co trong pantry duoc tru ra truoc khi nhom theo danh muc."
+        primaryAction={{ label: "Mo ke hoach pantry", href: "/meal-planning/pantry" }}
+        secondaryAction={{ label: "Xem pantry", href: "/pantry" }}
       />
       <ShoppingListView shoppingList={pantryPlan.shoppingList} />
     </div>

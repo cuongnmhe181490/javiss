@@ -11,23 +11,23 @@ type Feature = {
 
 const features: Feature[] = [
   {
-    title: "Meal plans that respect pantry reality",
-    description: "Use what is already at home first, then fill gaps with a normalized shopping list.",
+    title: "Thuc don ton trong pantry thuc te",
+    description: "Uu tien nguyen lieu dang co san, sau do moi bo sung danh sach can mua da duoc chuan hoa.",
     icon: ShoppingBasket,
   },
   {
-    title: "Budget-aware weekly planning",
-    description: "Hold the line on cost, prep time, and nutrition without falling back to a generic output.",
+    title: "Lap ke hoach theo ngan sach ca tuan",
+    description: "Can bang chi phi, thoi gian nau va dinh duong ma khong bien thanh de xuat chung chung.",
     icon: ChefHat,
   },
   {
-    title: "Workout plans that fit the equipment you have",
-    description: "Home and gym flows stay realistic with substitutions and progression logic baked in.",
+    title: "Lich tap phu hop dung cu ban co",
+    description: "Ca o nha lan phong gym deu thuc te hon nho logic thay the bai tap va tien trinh ro rang.",
     icon: Dumbbell,
   },
   {
-    title: "Consistency visuals that stay elegant",
-    description: "Streaks and tree growth reinforce progress without slipping into childish game UI.",
+    title: "Hien thi tien do thanh lich",
+    description: "Chuoi ngay va cay phat trien tao dong luc ma van giu phong cach truong thanh, de nhin.",
     icon: Sprout,
   },
 ];
@@ -36,9 +36,9 @@ export function FeatureGrid() {
   return (
     <div className="space-y-5">
       <SectionHeader
-        eyebrow="Core product value"
-        title="A calm system for daily decisions"
-        description="The interface should remove friction: one place for plans, one place for pantry truth, and one place to see consistency."
+        eyebrow="Gia tri cot loi"
+        title="Mot he thong nhe nhang cho quyet dinh moi ngay"
+        description="Giao dien duoc thiet ke de giam ma sat: mot noi cho ke hoach, mot noi cho pantry, va mot noi de thay tien do."
       />
 
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">

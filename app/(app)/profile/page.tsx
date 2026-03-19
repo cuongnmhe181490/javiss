@@ -9,11 +9,11 @@ export default async function ProfilePage() {
   return (
     <div className="space-y-4">
       <PageIntro
-        eyebrow="Profile"
-        title="Persistent health preferences and planning constraints."
-        description="Profile data is the shared source for future plan generation, pantry defaults, workout preferences, and dashboard personalization."
-        primaryAction={{ label: "Edit onboarding draft", href: "/onboarding" }}
-        secondaryAction={{ label: "Settings", href: "/settings" }}
+        eyebrow="Ho so"
+        title="So thich suc khoe va cac rang buoc lap ke hoach duoc luu lau dai."
+        description="Du lieu ho so la nguon dung chung cho viec tao ke hoach sau nay, gia tri mac dinh cua pantry, so thich tap luyen va ca nhan hoa trang tong quan."
+        primaryAction={{ label: "Sua onboarding", href: "/onboarding" }}
+        secondaryAction={{ label: "Cai dat", href: "/settings" }}
       />
       <ProfileSummaryCard profile={profile} />
       <ProfileForm initialValues={profile} onSubmit={saveProfileAction} />

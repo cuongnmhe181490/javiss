@@ -45,7 +45,7 @@ export function PantryForm({
   initialValues,
   onSubmit,
   className,
-  submitLabel = "Save pantry item",
+  submitLabel = "Luu mon pantry",
 }: PantryFormProps) {
   const [error, setError] = useState<string | null>(null);
   const [isPending, setIsPending] = useState(false);
@@ -75,7 +75,7 @@ export function PantryForm({
 
         const parsed = pantryItemInputSchema.safeParse(nextValue);
         if (!parsed.success) {
-          setError(parsed.error.issues[0]?.message ?? "Please review the pantry item fields.");
+          setError(parsed.error.issues[0]?.message ?? "Vui long kiem tra lai cac truong pantry.");
           setIsPending(false);
           return;
         }
@@ -84,7 +84,7 @@ export function PantryForm({
           await onSubmit(parsed.data);
         } catch (submissionError) {
           setError(
-            submissionError instanceof Error ? submissionError.message : "Unable to save pantry item.",
+            submissionError instanceof Error ? submissionError.message : "Khong the luu mon pantry.",
           );
         } finally {
           setIsPending(false);
@@ -94,29 +94,29 @@ export function PantryForm({
       <div className="flex items-start justify-between gap-4">
         <div>
           <p className="text-xs font-medium uppercase tracking-[0.28em] text-neutral-500">
-            Pantry item
+            Mon trong pantry
           </p>
           <h2 className="mt-2 text-2xl font-semibold text-neutral-950">
-            Add an ingredient you already own
+            Them nguyen lieu ban da co
           </h2>
         </div>
         <Button type="submit" disabled={isPending}>
-          {isPending ? "Saving..." : submitLabel}
+          {isPending ? "Dang luu..." : submitLabel}
         </Button>
       </div>
 
       <div className="grid gap-4 md:grid-cols-2">
-        <Field label="Name" name="name" defaultValue={initialValues?.name} />
+        <Field label="Ten" name="name" defaultValue={initialValues?.name} />
         <Field
-          label="Normalized name"
+          label="Ten chuan hoa"
           name="normalizedName"
           defaultValue={initialValues?.normalizedName}
         />
-        <Field label="Quantity" name="quantity" type="number" defaultValue={initialValues?.quantity} />
-        <Field label="Unit" name="unit" defaultValue={initialValues?.unit} />
-        <Field label="Expires on" name="expiresOn" type="date" defaultValue={initialValues?.expiresOn} />
+        <Field label="So luong" name="quantity" type="number" defaultValue={initialValues?.quantity} />
+        <Field label="Don vi" name="unit" defaultValue={initialValues?.unit} />
+        <Field label="Han su dung" name="expiresOn" type="date" defaultValue={initialValues?.expiresOn} />
         <SelectField
-          label="Source"
+          label="Nguon"
           name="source"
           options={sourceOptions}
           defaultValue={initialValues?.source ?? "manual"}
@@ -124,7 +124,7 @@ export function PantryForm({
       </div>
 
       <SelectField
-        label="Category"
+        label="Danh muc"
         name="category"
         options={categoryOptions}
         defaultValue={initialValues?.category ?? "other"}
@@ -132,7 +132,7 @@ export function PantryForm({
 
       <label className="flex items-center gap-3 rounded-2xl border border-black/10 bg-neutral-50 px-4 py-3 text-sm text-neutral-700">
         <input defaultChecked={initialValues?.isEstimated ?? false} name="isEstimated" type="checkbox" />
-        Estimated quantity
+        So luong uoc tinh
       </label>
 
       {error ? (

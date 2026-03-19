@@ -7,12 +7,12 @@ interface WorkoutSummaryGridProps {
 
 export function WorkoutSummaryGrid({ plan, summary }: WorkoutSummaryGridProps) {
   const cards = [
-    { label: "Goal", value: plan.goal.replaceAll("_", " ") },
-    { label: "Level", value: plan.level },
-    { label: "Training days", value: String(summary.trainingDays) },
-    { label: "Rest days", value: String(summary.restDays) },
-    { label: "Weekly volume", value: `${summary.weeklyDurationMin} min` },
-    { label: "Primary gear", value: summary.dominantEquipment.replaceAll("_", " ") },
+    { label: "Muc tieu", value: plan.goal.replaceAll("_", " ") },
+    { label: "Trinh do", value: plan.level },
+    { label: "Ngay tap", value: String(summary.trainingDays) },
+    { label: "Ngay nghi", value: String(summary.restDays) },
+    { label: "Tong thoi luong tuan", value: `${summary.weeklyDurationMin} phut` },
+    { label: "Thiet bi chinh", value: summary.dominantEquipment.replaceAll("_", " ") },
   ];
 
   return (

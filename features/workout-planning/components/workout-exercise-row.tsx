@@ -18,15 +18,15 @@ export function WorkoutExerciseRow({ exercise }: WorkoutExerciseRowProps) {
         </div>
         <div className="text-right text-sm text-zinc-600">
           <div>
-            {exercise.sets} sets x {exercise.reps}
+            {exercise.sets} set x {exercise.reps}
           </div>
-          <div>{exercise.restSeconds}s rest</div>
+          <div>Nghi {exercise.restSeconds} giay</div>
         </div>
       </div>
 
       <div className="mt-4 grid gap-3 md:grid-cols-2">
         <div>
-          <p className="text-xs font-medium uppercase tracking-[0.18em] text-zinc-500">Instructions</p>
+          <p className="text-xs font-medium uppercase tracking-[0.18em] text-zinc-500">Huong dan</p>
           <ol className="mt-2 space-y-1 text-sm text-zinc-700">
             {exercise.instructions.map((step) => (
               <li key={step} className="flex gap-2">
@@ -37,7 +37,7 @@ export function WorkoutExerciseRow({ exercise }: WorkoutExerciseRowProps) {
           </ol>
         </div>
         <div>
-          <p className="text-xs font-medium uppercase tracking-[0.18em] text-zinc-500">Cues</p>
+          <p className="text-xs font-medium uppercase tracking-[0.18em] text-zinc-500">Luu y</p>
           <ul className="mt-2 space-y-1 text-sm text-zinc-700">
             {exercise.cues.map((cue) => (
               <li key={cue}>- {cue}</li>
@@ -60,7 +60,7 @@ export function WorkoutExerciseRow({ exercise }: WorkoutExerciseRowProps) {
       {exercise.substitutions.length > 0 ? (
         <div className="mt-4 rounded-2xl bg-emerald-50/80 p-3">
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-700">
-            Substitutions
+            Bai thay the
           </p>
           <div className="mt-2 flex flex-wrap gap-2 text-sm text-emerald-950">
             {exercise.substitutions.map((substitution) => (

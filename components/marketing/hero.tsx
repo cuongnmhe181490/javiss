@@ -32,7 +32,7 @@ type HeroSectionProps = {
 };
 
 export function HeroSection({
-  eyebrow = "Healthy lifestyle planner",
+  eyebrow = "Tro ly song lanh manh",
   title,
   description,
   primaryAction,
@@ -88,9 +88,9 @@ export function HeroSection({
           </div>
 
           <div className="grid gap-3 sm:grid-cols-3">
-            <FeatureBadge text="Pantry first" />
-            <FeatureBadge text="Budget aware" />
-            <FeatureBadge text="Workout aligned" />
+            <FeatureBadge text="Uu tien pantry" />
+            <FeatureBadge text="Theo ngan sach" />
+            <FeatureBadge text="Dong bo tap luyen" />
           </div>
         </motion.div>
 
@@ -104,14 +104,14 @@ export function HeroSection({
             <div className="flex items-center justify-between gap-3">
               <div>
                 <p className="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-muted-foreground">
-                  Today
+                  Hom nay
                 </p>
                 <p className="text-lg font-semibold tracking-tight text-foreground">
-                  Smooth, realistic guidance
+                  Goi y muot ma va thuc te
                 </p>
               </div>
               <div className="rounded-full border border-emerald-100 bg-emerald-50 px-3 py-1 text-xs font-medium text-emerald-800">
-                Ready
+                San sang
               </div>
             </div>
 
@@ -134,11 +134,11 @@ export function HeroSection({
             <div className="rounded-[1.4rem] border border-emerald-100 bg-[linear-gradient(180deg,rgba(244,250,246,0.96),rgba(255,255,255,0.9))] p-4">
               <div className="flex items-center gap-2 text-sm font-medium text-emerald-900">
                 <CheckCircle2 className="size-4" />
-                Built for consistent action, not novelty
+                Thiet ke de de hanh dong, khong phai de trinh dien
               </div>
               <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                Keep plan generation structured, tie shopping and pantry logic together,
-                and surface only the next useful step.
+                Tao ke hoach theo cau truc ro rang, lien ket logic mua sam voi pantry,
+                va chi hien thi buoc tiep theo thuc su can thiet.
               </p>
             </div>
           </GlassCard>

@@ -15,17 +15,17 @@ export default async function MealPlanningPage() {
   return (
     <div className="space-y-4">
       <PageIntro
-        eyebrow="Meal planning"
-        title="Two planning modes, one typed meal engine."
-        description="Pantry mode maximizes ingredient reuse and waste reduction. Budget mode steers the same generator toward practical cost and prep-time constraints."
-        primaryAction={{ label: "Plan from pantry", href: "/meal-planning/pantry" }}
-        secondaryAction={{ label: "Plan from budget", href: "/meal-planning/budget" }}
+        eyebrow="Lap ke hoach bua an"
+        title="Hai che do lap ke hoach, mot bo may bua an co typing ro rang."
+        description="Che do pantry toi da hoa viec tai su dung nguyen lieu va giam lang phi. Che do ngan sach dung cung bo generator do nhung rang buoc thuc te ve chi phi va thoi gian nau."
+        primaryAction={{ label: "Lap tu pantry", href: "/meal-planning/pantry" }}
+        secondaryAction={{ label: "Lap theo ngan sach", href: "/meal-planning/budget" }}
       >
         <GlassCard padding="md" className="grid gap-3">
           <div className="grid gap-3 sm:grid-cols-2">
             <div className="rounded-[1.2rem] border border-white/80 bg-white/76 p-4">
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground">
-                Pantry coverage
+                Do phu pantry
               </p>
               <p className="mt-1 text-2xl font-semibold tracking-tight text-foreground">
                 {pantryPlan.shoppingList.totals.pantryCoveredItems}
@@ -33,10 +33,10 @@ export default async function MealPlanningPage() {
             </div>
             <div className="rounded-[1.2rem] border border-white/80 bg-white/76 p-4">
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground">
-                Budget list
+                Danh sach theo ngan sach
               </p>
               <p className="mt-1 text-2xl font-semibold tracking-tight text-foreground">
-                {budgetPlan.shoppingList.totals.buyItems} items
+                {budgetPlan.shoppingList.totals.buyItems} mon
               </p>
             </div>
           </div>
@@ -49,20 +49,20 @@ export default async function MealPlanningPage() {
             <Refrigerator className="size-5" />
           </div>
           <h2 className="mt-4 text-2xl font-semibold tracking-tight text-foreground">
-            Mode A: Plan from pantry
+            Che do A: Lap tu pantry
           </h2>
           <p className="mt-2 text-sm leading-6 text-muted-foreground">
-            Prioritizes pantry overlap, expiry-sensitive ingredients, and ingredient reuse across the week before adding missing items to the shopping list.
+            Uu tien nguyen lieu dang co, nhung mon sap het han, va kha nang tai su dung xuyen suot ca tuan truoc khi them mon con thieu vao danh sach mua sam.
           </p>
           <div className="mt-5 flex flex-wrap gap-2">
-            {["Minimize waste", "Use what is at home", "Generate missing items"].map((item) => (
+            {["Giam lang phi", "Uu tien do san trong nha", "Sinh mon con thieu"].map((item) => (
               <span key={item} className="rounded-full border border-emerald-100 bg-emerald-50 px-3 py-1 text-xs font-medium text-emerald-800">
                 {item}
               </span>
             ))}
           </div>
           <Link href="/meal-planning/pantry" className={`${primaryLinkButtonClass} mt-6`}>
-            Open pantry mode
+            Mo che do pantry
           </Link>
         </GlassCard>
 
@@ -71,20 +71,20 @@ export default async function MealPlanningPage() {
             <Coins className="size-5" />
           </div>
           <h2 className="mt-4 text-2xl font-semibold tracking-tight text-foreground">
-            Mode B: Plan from budget
+            Che do B: Lap tu ngan sach
           </h2>
           <p className="mt-2 text-sm leading-6 text-muted-foreground">
-            Optimizes for weekly spend, cooking time, health goals, and variety while still producing a full shopping list and pantry reconciliation.
+            Toi uu chi phi tuan, thoi gian nau, muc tieu suc khoe va do da dang mon an, dong thoi van tao day du danh sach mua sam va doi chieu pantry.
           </p>
           <div className="mt-5 flex flex-wrap gap-2">
-            {["Cost aware", "Time constrained", "Variety balanced"].map((item) => (
+            {["Co y thuc chi phi", "Rang buoc thoi gian", "Can bang do da dang"].map((item) => (
               <span key={item} className="rounded-full border border-white/80 bg-white/76 px-3 py-1 text-xs font-medium text-foreground">
                 {item}
               </span>
             ))}
           </div>
           <Link href="/meal-planning/budget" className={`${outlineLinkButtonClass} mt-6`}>
-            Open budget mode
+            Mo che do ngan sach
           </Link>
         </GlassCard>
       </section>

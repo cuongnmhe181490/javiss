@@ -14,11 +14,11 @@ export default async function MealPlanDetailPage({
   return (
     <div className="space-y-4">
       <PageIntro
-        eyebrow="Meal plan detail"
-        title={`${plan.mode === "pantry" ? "Pantry-first" : "Budget-aware"} weekly plan`}
-        description="Dynamic meal plan detail is already routed, even though the scaffold currently resolves to deterministic mock snapshots."
-        primaryAction={{ label: "Shopping list", href: "/shopping-list" }}
-        secondaryAction={{ label: "Meals hub", href: "/meal-planning" }}
+        eyebrow="Chi tiet ke hoach bua an"
+        title={`${plan.mode === "pantry" ? "Ke hoach uu tien pantry" : "Ke hoach toi uu ngan sach"} trong tuan`}
+        description="Route chi tiet ke hoach bua an da hoat dong day du, du scaffold hien tai van dang tra ve snapshot mock deterministic."
+        primaryAction={{ label: "Danh sach mua sam", href: "/shopping-list" }}
+        secondaryAction={{ label: "Trung tam bua an", href: "/meal-planning" }}
       />
       <MealPlanView plan={plan} />
     </div>
