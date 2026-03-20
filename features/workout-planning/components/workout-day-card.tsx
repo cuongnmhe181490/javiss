@@ -1,14 +1,16 @@
 import { CalendarDays, MoonStar, TimerReset } from "lucide-react";
 
+import type { AppLanguage } from "@/lib/display";
 import { workoutKindLabels } from "@/lib/display";
 import type { WorkoutDay } from "@/services/workout-planning";
 import { WorkoutExerciseRow } from "./workout-exercise-row";
 
 interface WorkoutDayCardProps {
   day: WorkoutDay;
+  language?: AppLanguage;
 }
 
-export function WorkoutDayCard({ day }: WorkoutDayCardProps) {
+export function WorkoutDayCard({ day, language = "vi" }: WorkoutDayCardProps) {
   const isRest = day.kind === "rest";
 
   return (
@@ -48,7 +50,7 @@ export function WorkoutDayCard({ day }: WorkoutDayCardProps) {
       ) : (
         <div className="mt-5 grid gap-4">
           {day.exercises.map((exercise) => (
-            <WorkoutExerciseRow key={exercise.id} exercise={exercise} />
+            <WorkoutExerciseRow key={exercise.id} exercise={exercise} language={language} />
           ))}
         </div>
       )}

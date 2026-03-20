@@ -4,7 +4,7 @@ import { getDashboardState } from "@/lib/demo-data";
 import { formatCurrency } from "@/services/pricing";
 
 export default async function BudgetMealPlanPage() {
-  const { budgetPlan, profile } = await getDashboardState();
+  const { budgetPlan, profile, settings } = await getDashboardState();
 
   return (
     <div className="space-y-4">
@@ -17,7 +17,7 @@ export default async function BudgetMealPlanPage() {
         primaryAction={{ label: "Mở mua sắm", href: "/shopping-list" }}
         secondaryAction={{ label: "So sánh với pantry", href: "/meal-planning/pantry" }}
       />
-      <MealPlanView plan={budgetPlan} />
+      <MealPlanView plan={budgetPlan} language={settings.language} />
     </div>
   );
 }

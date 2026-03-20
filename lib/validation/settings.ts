@@ -3,6 +3,7 @@ import { z } from "zod";
 import { weekdaySchema } from "./shared";
 
 export const settingsInputSchema = z.object({
+  language: z.enum(["vi", "en"]).default("vi"),
   theme: z.enum(["light", "dark", "system"]).default("system"),
   currency: z.enum(["VND"]).default("VND"),
   budgetModeDefault: z.enum(["daily", "weekly"]).default("weekly"),

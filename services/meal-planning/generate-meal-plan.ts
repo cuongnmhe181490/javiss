@@ -228,6 +228,7 @@ function chooseRecipe(
   pantry: PantryItem[],
   mealType: MealType,
   usageMap: Map<string, number>,
+  recentByType: Map<MealType, string[]>,
   dayIndex: number,
   slotIndex: number,
   slotBudgetCap?: number,
@@ -237,8 +238,11 @@ function chooseRecipe(
     .map((recipe) =>
       buildMealCandidate(recipe, request, pantry, mealType, usageMap, slotBudgetCap),
     );
+  const recentIds = recentByType.get(mealType) ?? [];
+  const availableCandidates = candidates.filter((candidate) => !recentIds.includes(candidate.recipe.id));
+  const candidatePool = availableCandidates.length > 0 ? availableCandidates : candidates;
 
-  const affordable = candidates
+  const affordable = candidatePool
     .filter((candidate) => candidate.affordable)
     .sort((a, b) =>
       request.mode === "budget"
@@ -254,7 +258,7 @@ function chooseRecipe(
     };
   }
 
-  const fallback = candidates.sort((a, b) => a.scaledCost - b.scaledCost || b.score - a.score)[0];
+  const fallback = candidatePool.sort((a, b) => a.scaledCost - b.scaledCost || b.score - a.score)[0];
   if (fallback) {
     return {
       ...fallback,
@@ -301,6 +305,7 @@ function summarizeWeeklyNutrition(days: DayPlan[]) {
 function buildDays(request: MealPlanRequest, pantry: PantryItem[]) {
   const catalog = getRecipeCatalog();
   const usageMap = new Map<string, number>();
+  const recentByType = new Map<MealType, string[]>();
   const warnings = new Set<string>();
   const days: DayPlan[] = [];
   const weeklyBudgetCap = getWeeklyBudgetCap(request);
@@ -325,6 +330,7 @@ function buildDays(request: MealPlanRequest, pantry: PantryItem[]) {
         pantry,
         mealType,
         usageMap,
+        recentByType,
         dayIndex,
         slotIndex,
         slotBudgetCap,
@@ -339,6 +345,7 @@ function buildDays(request: MealPlanRequest, pantry: PantryItem[]) {
       }
 
       usageMap.set(candidate.recipe.id, (usageMap.get(candidate.recipe.id) ?? 0) + 1);
+      recentByType.set(mealType, [...(recentByType.get(mealType) ?? []).slice(-1), candidate.recipe.id]);
       spentCost += candidate.scaledCost;
 
       return buildPlannedMeal(candidate.recipe, round(candidate.multiplier), candidate.scaledCost);

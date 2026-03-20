@@ -1,4 +1,4 @@
-import { labelForGoal, workoutLevelLabels } from "@/lib/display";
+import { type AppLanguage, labelForGoal, workoutLevelLabels } from "@/lib/display";
 import type { WorkoutPlan } from "@/services/workout-planning";
 import { getWorkoutPlanSummary } from "@/services/workout-planning";
 import { WorkoutDayCard } from "./workout-day-card";
@@ -6,9 +6,10 @@ import { WorkoutSummaryGrid } from "./workout-summary-grid";
 
 interface WorkoutPlanViewProps {
   plan: WorkoutPlan;
+  language?: AppLanguage;
 }
 
-export function WorkoutPlanView({ plan }: WorkoutPlanViewProps) {
+export function WorkoutPlanView({ plan, language = "vi" }: WorkoutPlanViewProps) {
   const summary = getWorkoutPlanSummary(plan);
 
   return (
@@ -29,7 +30,7 @@ export function WorkoutPlanView({ plan }: WorkoutPlanViewProps) {
 
       <div className="grid gap-5">
         {plan.days.map((day) => (
-          <WorkoutDayCard key={`${day.index}-${day.date}`} day={day} />
+          <WorkoutDayCard key={`${day.index}-${day.date}`} day={day} language={language} />
         ))}
       </div>
     </div>

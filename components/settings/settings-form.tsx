@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useMemo, useState, useTransition } from "react";
 import { ChevronDown } from "lucide-react";
 
-import { budgetPeriodLabels, measurementSystemLabels, themeLabels, weekdayLabels } from "@/lib/display";
+import { budgetPeriodLabels, languageLabels, measurementSystemLabels, themeLabels, weekdayLabels } from "@/lib/display";
 import { applyThemePreference, type AppTheme } from "@/lib/theme-client";
 import type { SettingsRecord } from "@/types/profile";
 
@@ -37,6 +37,9 @@ export function SettingsForm({ initialSettings, action }: SettingsFormProps) {
           Đang dùng
         </p>
         <div className="mt-4 space-y-3 text-sm text-muted-foreground">
+          <p>
+            <span className="font-medium text-foreground">Ngôn ngữ:</span> {languageLabels[initialSettings.language]}
+          </p>
           <p>
             <span className="font-medium text-foreground">Theme:</span> {summaryThemeLabel}
           </p>
@@ -84,6 +87,16 @@ export function SettingsForm({ initialSettings, action }: SettingsFormProps) {
         </div>
 
         <div className="mt-5 grid gap-4">
+          <label className="space-y-2">
+            <span className="text-sm font-medium text-foreground">Ngôn ngữ</span>
+            <SelectShell>
+              <select name="language" defaultValue={initialSettings.language} className="app-select">
+                <option value="vi">{languageLabels.vi}</option>
+                <option value="en">{languageLabels.en}</option>
+              </select>
+            </SelectShell>
+          </label>
+
           <label className="space-y-2">
             <span className="text-sm font-medium text-foreground">Theme</span>
             <SelectShell>

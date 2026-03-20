@@ -79,6 +79,7 @@ function fallbackProfileInput(): ProfileInput {
 
 function fallbackSettingsInput(): SettingsInput {
   return {
+    language: mockSettings.language,
     theme: mockSettings.theme,
     currency: mockSettings.currency,
     budgetModeDefault: mockSettings.budgetModeDefault,

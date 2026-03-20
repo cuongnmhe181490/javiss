@@ -54,6 +54,7 @@ export async function clearPantryAction() {
 
 export async function saveSettingsAction(formData: FormData) {
   const parsed = settingsInputSchema.parse({
+    language: formData.get("language"),
     theme: formData.get("theme"),
     currency: formData.get("currency"),
     budgetModeDefault: formData.get("budgetModeDefault"),

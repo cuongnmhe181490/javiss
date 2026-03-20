@@ -37,6 +37,7 @@ export const mockProfile: ProfileRecord = {
 
 export const mockSettings: SettingsRecord = {
   userId: mockAuthUser.id,
+  language: "vi",
   theme: "system",
   currency: "VND",
   budgetModeDefault: "weekly",

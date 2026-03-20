@@ -1,4 +1,5 @@
 import {
+  type AppLanguage,
   translateIngredientName,
   translateMealTag,
   translateMealType,
@@ -13,6 +14,7 @@ import type { MealPlan } from "../../services/meal-planning/types";
 
 type MealPlanViewProps = {
   plan: MealPlan;
+  language?: AppLanguage;
 };
 
 function Stat({ label, value }: { label: string; value: string }) {
@@ -28,7 +30,7 @@ function Stat({ label, value }: { label: string; value: string }) {
   );
 }
 
-export function MealPlanView({ plan }: MealPlanViewProps) {
+export function MealPlanView({ plan, language = "vi" }: MealPlanViewProps) {
   const periodLabel =
     plan.costSummary.budgetPeriod === "day"
       ? "ngày"
@@ -107,9 +109,9 @@ export function MealPlanView({ plan }: MealPlanViewProps) {
 
             <div className="grid gap-3 lg:grid-cols-2">
               {day.meals.map((meal) => {
-                const mealName = translateRecipeName(meal.id, meal.name);
-                const mealDescription = translateRecipeDescription(meal.id, meal.description);
-                const mealInstructions = translateRecipeInstructions(meal.id, meal.instructions);
+                const mealName = translateRecipeName(meal.id, meal.name, language);
+                const mealDescription = translateRecipeDescription(meal.id, meal.description, language);
+                const mealInstructions = translateRecipeInstructions(meal.id, meal.instructions, language);
 
                 return (
                   <article
@@ -119,7 +121,7 @@ export function MealPlanView({ plan }: MealPlanViewProps) {
                     <div className="flex items-start justify-between gap-3">
                       <div>
                         <p className="text-xs font-medium uppercase tracking-[0.25em] text-slate-500 dark:text-slate-400">
-                          {translateMealType(meal.mealType)}
+                          {translateMealType(meal.mealType, language)}
                         </p>
                         <h4 className="mt-1 text-base font-semibold text-slate-950 dark:text-slate-50">
                           {mealName}
@@ -138,7 +140,7 @@ export function MealPlanView({ plan }: MealPlanViewProps) {
                           key={tag}
                           className="interactive-chip rounded-full bg-white px-3 py-1 text-xs font-medium text-slate-700 dark:bg-white/10 dark:text-slate-100"
                         >
-                          {translateMealTag(tag)}
+                          {translateMealTag(tag, language)}
                         </span>
                       ))}
                     </div>
@@ -161,7 +163,7 @@ export function MealPlanView({ plan }: MealPlanViewProps) {
                       <ul className="mt-2 space-y-2 text-sm text-slate-700 dark:text-slate-200">
                         {meal.scaledIngredients.slice(0, 4).map((ingredient) => (
                           <li key={`${meal.id}-${ingredient.normalizedName}`}>
-                            {ingredient.quantity} {ingredient.unit} {translateIngredientName(ingredient.name)}
+                            {ingredient.quantity} {ingredient.unit} {translateIngredientName(ingredient.name, language)}
                           </li>
                         ))}
                       </ul>

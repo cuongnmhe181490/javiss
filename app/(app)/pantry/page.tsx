@@ -9,7 +9,7 @@ export default async function PantryPage({
 }: {
   searchParams?: Promise<{ returnTo?: string }>;
 }) {
-  const { pantryItems } = await getDashboardState();
+  const { pantryItems, settings } = await getDashboardState();
   const params = await searchParams;
   const returnTo = params?.returnTo;
 
@@ -23,7 +23,7 @@ export default async function PantryPage({
         secondaryAction={{ label: "Mở mua sắm", href: "/shopping-list" }}
       />
 
-      <PantryWorkspace items={pantryItems} onSubmit={addPantryItemAction} returnTo={returnTo} />
+      <PantryWorkspace items={pantryItems} onSubmit={addPantryItemAction} returnTo={returnTo} language={settings.language} />
 
       <GlassCard padding="md" className="interactive-card flex items-center justify-between gap-3">
         <div>

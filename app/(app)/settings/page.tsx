@@ -31,7 +31,7 @@ export default async function SettingsPage() {
             <span className="font-medium text-foreground">Cá nhân hóa:</span> đang hoạt động
           </p>
           <p>
-            <span className="font-medium text-foreground">Khu vực:</span> Việt Nam
+            <span className="font-medium text-foreground">Ngôn ngữ:</span> {settings.language === "en" ? "English" : "Tiếng Việt"}
           </p>
         </div>
       </GlassCard>

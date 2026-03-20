@@ -1,6 +1,7 @@
 import { BadgeCheck, Dumbbell } from "lucide-react";
 
 import {
+  type AppLanguage,
   equipmentLabels,
   translateExerciseCues,
   translateExerciseDescription,
@@ -11,6 +12,7 @@ import type { WorkoutExercise } from "@/services/workout-planning";
 
 interface WorkoutExerciseRowProps {
   exercise: WorkoutExercise;
+  language?: AppLanguage;
 }
 
 function labelForEquipment(value: string) {
@@ -26,11 +28,11 @@ function labelForEquipment(value: string) {
   return equipmentLabels[normalized as keyof typeof equipmentLabels] ?? value;
 }
 
-export function WorkoutExerciseRow({ exercise }: WorkoutExerciseRowProps) {
-  const exerciseName = translateExerciseName(exercise.id, exercise.name);
-  const description = translateExerciseDescription(exercise.id, exercise.description);
-  const instructions = translateExerciseInstructions(exercise.id, exercise.instructions);
-  const cues = translateExerciseCues(exercise.id, exercise.cues);
+export function WorkoutExerciseRow({ exercise, language = "vi" }: WorkoutExerciseRowProps) {
+  const exerciseName = translateExerciseName(exercise.id, exercise.name, language);
+  const description = translateExerciseDescription(exercise.id, exercise.description, language);
+  const instructions = translateExerciseInstructions(exercise.id, exercise.instructions, language);
+  const cues = translateExerciseCues(exercise.id, exercise.cues, language);
 
   return (
     <div className="interactive-card rounded-3xl border border-black/5 bg-white/88 p-4 shadow-[0_12px_34px_rgba(15,23,42,0.08)] backdrop-blur-sm dark:border-white/10 dark:bg-[#2a3341]/90">
@@ -95,7 +97,7 @@ export function WorkoutExerciseRow({ exercise }: WorkoutExerciseRowProps) {
           <div className="mt-2 flex flex-wrap gap-2 text-sm text-emerald-950 dark:text-white">
             {exercise.substitutions.map((substitution) => (
               <span key={substitution.id} className="rounded-full bg-white/80 px-3 py-1 dark:bg-white/12">
-                {translateExerciseName(substitution.id, substitution.name)}
+                {translateExerciseName(substitution.id, substitution.name, language)}
               </span>
             ))}
           </div>

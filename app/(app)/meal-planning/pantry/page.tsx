@@ -3,7 +3,7 @@ import { MealPlanView } from "@/features/meal-planning";
 import { getDashboardState } from "@/lib/demo-data";
 
 export default async function PantryMealPlanPage() {
-  const { pantryPlan } = await getDashboardState();
+  const { pantryPlan, settings } = await getDashboardState();
 
   return (
     <div className="space-y-4">
@@ -14,7 +14,7 @@ export default async function PantryMealPlanPage() {
         primaryAction={{ label: "Cập nhật pantry", href: "/pantry?returnTo=/meal-planning/pantry" }}
         secondaryAction={{ label: "Xem mua sắm", href: "/shopping-list" }}
       />
-      <MealPlanView plan={pantryPlan} />
+      <MealPlanView plan={pantryPlan} language={settings.language} />
     </div>
   );
 }

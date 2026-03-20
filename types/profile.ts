@@ -30,6 +30,7 @@ export interface ProfilePreferences {
 
 export interface SettingsRecord {
   userId: string;
+  language: z.infer<typeof settingsInputSchema>["language"];
   theme: z.infer<typeof settingsInputSchema>["theme"];
   currency: z.infer<typeof settingsInputSchema>["currency"];
   budgetModeDefault: z.infer<typeof settingsInputSchema>["budgetModeDefault"];

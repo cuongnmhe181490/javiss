@@ -8,7 +8,7 @@ export default async function MealPlanDetailPage({
   params: Promise<{ planId: string }>;
 }) {
   const { planId } = await params;
-  const { pantryPlan, budgetPlan } = await getDashboardState();
+  const { pantryPlan, budgetPlan, settings } = await getDashboardState();
   const plan = planId === "budget" ? budgetPlan : pantryPlan;
 
   return (
@@ -20,7 +20,7 @@ export default async function MealPlanDetailPage({
         primaryAction={{ label: "Danh sách mua sắm", href: "/shopping-list" }}
         secondaryAction={{ label: "Kế hoạch bữa ăn", href: "/meal-planning" }}
       />
-      <MealPlanView plan={plan} />
+      <MealPlanView plan={plan} language={settings.language} />
     </div>
   );
 }

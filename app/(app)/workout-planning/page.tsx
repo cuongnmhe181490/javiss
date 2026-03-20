@@ -3,7 +3,7 @@ import { WorkoutPlanView } from "@/features/workout-planning";
 import { getDashboardState } from "@/lib/demo-data";
 
 export default async function WorkoutPlanningPage() {
-  const { workoutPlan } = await getDashboardState();
+  const { workoutPlan, settings } = await getDashboardState();
 
   return (
     <div className="space-y-4">
@@ -14,7 +14,7 @@ export default async function WorkoutPlanningPage() {
         primaryAction={{ label: "Xem lịch tập", href: "/workout-planning/current" }}
         secondaryAction={{ label: "Mở tổng quan", href: "/dashboard" }}
       />
-      <WorkoutPlanView plan={workoutPlan} />
+      <WorkoutPlanView plan={workoutPlan} language={settings.language} />
     </div>
   );
 }

@@ -3,24 +3,24 @@
 import Link from "next/link";
 import { useMemo, useState } from "react";
 
+import type { AppLanguage } from "@/lib/display";
+import type { PantryItemInput, PantryItemRecord } from "@/types/pantry";
 import { PantryForm } from "./pantry-form";
 import { PantryItemList } from "./pantry-item-list";
-import type { PantryItemInput, PantryItemRecord } from "@/types/pantry";
 
 type PantryWorkspaceProps = {
   items: PantryItemRecord[];
   onSubmit: (values: PantryItemInput) => Promise<void> | void;
   returnTo?: string;
+  language?: AppLanguage;
 };
 
-export function PantryWorkspace({ items, onSubmit, returnTo }: PantryWorkspaceProps) {
+export function PantryWorkspace({ items, onSubmit, returnTo, language = "vi" }: PantryWorkspaceProps) {
   const [query, setQuery] = useState("");
 
   const filteredItems = useMemo(() => {
     const keyword = query.trim().toLowerCase();
-    if (!keyword) {
-      return items;
-    }
+    if (!keyword) return items;
 
     return items.filter((item) =>
       [item.name, item.normalizedName].some((value) => value.toLowerCase().includes(keyword)),
@@ -31,12 +31,8 @@ export function PantryWorkspace({ items, onSubmit, returnTo }: PantryWorkspacePr
     <section className="grid gap-4 xl:grid-cols-[0.95fr_1.05fr]">
       <div className="space-y-4">
         <div className="glass-surface rounded-[1.75rem] p-5">
-          <p className="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-muted-foreground">
-            Bước 1
-          </p>
-          <h2 className="mt-2 text-xl font-semibold text-foreground">
-            Thêm nguyên liệu sẵn có
-          </h2>
+          <p className="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-muted-foreground">Bước 1</p>
+          <h2 className="mt-2 text-xl font-semibold text-foreground">Thêm nguyên liệu sẵn có</h2>
           <p className="mt-2 max-w-md text-sm text-muted-foreground">
             Nhập vài món đang có trong bếp rồi tiếp tục lập thực đơn.
           </p>
@@ -74,7 +70,7 @@ export function PantryWorkspace({ items, onSubmit, returnTo }: PantryWorkspacePr
             />
           </label>
         </div>
-        <PantryItemList items={filteredItems} />
+        <PantryItemList items={filteredItems} language={language} />
       </div>
     </section>
   );

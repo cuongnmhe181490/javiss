@@ -1,4 +1,5 @@
 import type { ActivityLevel, BudgetPeriod, Goal } from "@/types/profile";
+export type AppLanguage = "vi" | "en";
 
 export const goalLabels: Record<Goal, string> = {
   fat_loss: "Giảm mỡ",
@@ -24,6 +25,11 @@ export const themeLabels = {
   light: "Sáng",
   dark: "Tối",
   system: "Theo hệ thống",
+} as const;
+
+export const languageLabels = {
+  vi: "Tiếng Việt",
+  en: "English",
 } as const;
 
 export const measurementSystemLabels = {
@@ -108,6 +114,13 @@ const mealTypeLabels = {
   snack: "Bữa phụ",
 } as const;
 
+const mealTypeEnglishLabels = {
+  breakfast: "Breakfast",
+  lunch: "Lunch",
+  dinner: "Dinner",
+  snack: "Snack",
+} as const;
+
 const mealTagLabels: Record<string, string> = {
   "high-protein": "Giàu đạm",
   quick: "Nhanh gọn",
@@ -118,6 +131,27 @@ const mealTagLabels: Record<string, string> = {
   balanced: "Cân bằng",
   snack: "Bữa phụ",
 };
+
+const mealTagEnglishLabels: Record<string, string> = {
+  "high-protein": "High protein",
+  quick: "Quick",
+  "budget-friendly": "Budget friendly",
+  "beginner-friendly": "Beginner friendly",
+  vegetarian: "Vegetarian",
+  "meal-prep": "Meal prep",
+  balanced: "Balanced",
+  snack: "Snack",
+};
+
+const pantryCategoryEnglishLabels = {
+  proteins: "Protein",
+  vegetables: "Vegetables",
+  fruits: "Fruits",
+  carbs_grains: "Carbs & grains",
+  dairy: "Dairy",
+  spices_condiments: "Spices & condiments",
+  other: "Other",
+} as const;
 
 const ingredientLabels: Record<string, string> = {
   "rolled oats": "Yến mạch cán dẹt",
@@ -143,6 +177,7 @@ const ingredientLabels: Record<string, string> = {
   chickpeas: "Đậu gà",
   greens: "Rau xanh",
   "olive oil": "Dầu ô liu",
+  "brown rice": "Gạo lứt",
   lentils: "Đậu lăng",
   onion: "Hành tây",
   carrot: "Cà rốt",
@@ -157,6 +192,33 @@ const ingredientLabels: Record<string, string> = {
   "coconut milk": "Nước cốt dừa",
   apple: "Táo",
 };
+
+const unitLabels = {
+  vi: {
+    item: "đơn vị",
+    piece: "quả",
+    slice: "lát",
+    bag: "gói",
+    bags: "gói",
+    g: "g",
+    kg: "kg",
+    ml: "ml",
+    l: "lít",
+    can: "lon",
+  },
+  en: {
+    item: "item",
+    piece: "piece",
+    slice: "slice",
+    bag: "bag",
+    bags: "bags",
+    g: "g",
+    kg: "kg",
+    ml: "ml",
+    l: "L",
+    can: "can",
+  },
+} as const;
 
 const recipeTranslations = {
   "breakfast-overnight-oats": {
@@ -266,6 +328,72 @@ const recipeTranslations = {
       "Bỏ hạt để dễ ăn hơn, nhất là khi chuẩn bị sẵn cho mang theo.",
       "Múc bơ đậu phộng ra chén nhỏ hoặc phết nhẹ lên từng lát táo.",
       "Ăn ngay hoặc giữ lạnh ngắn để táo vẫn giòn.",
+    ],
+  },
+  "breakfast-yogurt-banana-cup": {
+    name: "Cốc sữa chua chuối yến mạch",
+    description: "Bữa sáng nhanh với sữa chua, chuối và yến mạch cán dẹt.",
+    instructions: [
+      "Cho sữa chua ra cốc hoặc bát nhỏ.",
+      "Thái chuối thành lát mỏng rồi xếp lên trên.",
+      "Rắc yến mạch và chút hạt chia để tăng độ no.",
+      "Để lạnh 5 phút nếu muốn ăn mát hơn.",
+      "Dùng ngay khi vừa trộn xong.",
+    ],
+  },
+  "breakfast-egg-rice-bowl": {
+    name: "Cơm trứng rau xanh",
+    description: "Bữa sáng no lâu với cơm, trứng và rau chân vịt.",
+    instructions: [
+      "Làm nóng chảo với ít dầu ô liu.",
+      "Xào nhanh rau chân vịt đến khi vừa mềm.",
+      "Ốp hoặc đảo trứng trong cùng chảo đến khi chín vừa.",
+      "Cho cơm nóng ra bát, thêm rau và trứng lên trên.",
+      "Nêm nhẹ với chút muối tiêu trước khi dùng.",
+    ],
+  },
+  "lunch-tofu-rice-bowl": {
+    name: "Cơm đậu phụ rau củ",
+    description: "Bát cơm tiết kiệm với đậu phụ, cà rốt và rau xanh.",
+    instructions: [
+      "Áp chảo đậu phụ đến khi mặt ngoài vàng nhẹ.",
+      "Xào cà rốt và rau xanh trên lửa vừa.",
+      "Nêm một ít nước tương cho phần rau củ đậm vị.",
+      "Cho cơm ra bát, xếp đậu phụ và rau lên trên.",
+      "Dùng nóng để giữ độ thơm của cơm và rau.",
+    ],
+  },
+  "lunch-chickpea-rice-salad": {
+    name: "Salad cơm đậu gà",
+    description: "Món trưa nhẹ bụng với cơm, đậu gà, dưa leo và cà chua.",
+    instructions: [
+      "Để cơm nguội bớt để trộn salad không bị nhão.",
+      "Cho cơm, đậu gà, dưa leo và cà chua vào tô lớn.",
+      "Thêm dầu ô liu và chút chanh hoặc muối nhẹ.",
+      "Trộn đều tay để nguyên liệu phủ vị đồng đều.",
+      "Ăn ngay hoặc để lạnh ngắn trước khi dùng.",
+    ],
+  },
+  "dinner-chicken-spinach-rice": {
+    name: "Cơm gà rau xanh",
+    description: "Bữa tối gọn nhẹ với ức gà, cơm và rau chân vịt.",
+    instructions: [
+      "Ướp ức gà với chút muối tiêu rồi áp chảo đến khi chín vàng.",
+      "Làm nóng rau chân vịt nhanh trong chảo để giữ màu xanh.",
+      "Múc cơm nóng ra đĩa hoặc bát lớn.",
+      "Cắt gà thành lát vừa ăn rồi xếp cùng rau lên trên cơm.",
+      "Thêm chút nước chanh hoặc dầu ô liu nếu muốn vị sáng hơn.",
+    ],
+  },
+  "dinner-lentil-rice-bowl": {
+    name: "Cơm đậu lăng cà chua",
+    description: "Món tối tiết kiệm, no lâu với đậu lăng và cà chua.",
+    instructions: [
+      "Nấu đậu lăng cùng hành và cà chua đến khi mềm.",
+      "Nêm vừa miệng để phần đậu có vị đậm nhẹ.",
+      "Chuẩn bị cơm nóng trong bát lớn.",
+      "Múc đậu lăng sốt cà chua lên trên cơm.",
+      "Ăn nóng để giữ độ thơm và cảm giác no lâu hơn.",
     ],
   },
 } as const;
@@ -483,42 +611,62 @@ const exerciseTranslations = {
   },
 } as const;
 
-export function translateMealType(value: string) {
+export function translateMealType(value: string, language: AppLanguage = "vi") {
+  if (language === "en") return mealTypeEnglishLabels[value as keyof typeof mealTypeEnglishLabels] ?? value;
   return mealTypeLabels[value as keyof typeof mealTypeLabels] ?? value;
 }
 
-export function translateMealTag(tag: string) {
+export function translateMealTag(tag: string, language: AppLanguage = "vi") {
+  if (language === "en") return mealTagEnglishLabels[tag] ?? tag;
   return mealTagLabels[tag] ?? tag;
 }
 
-export function translateIngredientName(name: string) {
+export function translateIngredientName(name: string, language: AppLanguage = "vi") {
+  if (language === "en") return name;
   return ingredientLabels[name.toLowerCase()] ?? name;
 }
 
-export function translateRecipeName(id: string, fallback: string) {
+export function translateRecipeName(id: string, fallback: string, language: AppLanguage = "vi") {
+  if (language === "en") return fallback;
   return recipeTranslations[id as keyof typeof recipeTranslations]?.name ?? fallback;
 }
 
-export function translateRecipeDescription(id: string, fallback: string) {
+export function translateRecipeDescription(id: string, fallback: string, language: AppLanguage = "vi") {
+  if (language === "en") return fallback;
   return recipeTranslations[id as keyof typeof recipeTranslations]?.description ?? fallback;
 }
 
-export function translateRecipeInstructions(id: string, fallback: string[]) {
+export function translateRecipeInstructions(id: string, fallback: string[], language: AppLanguage = "vi") {
+  if (language === "en") return fallback;
   return recipeTranslations[id as keyof typeof recipeTranslations]?.instructions ?? fallback;
 }
 
-export function translateExerciseName(id: string, fallback: string) {
+export function translateExerciseName(id: string, fallback: string, language: AppLanguage = "vi") {
+  if (language === "en") return fallback;
   return exerciseTranslations[id as keyof typeof exerciseTranslations]?.name ?? fallback;
 }
 
-export function translateExerciseDescription(id: string, fallback: string) {
+export function translateExerciseDescription(id: string, fallback: string, language: AppLanguage = "vi") {
+  if (language === "en") return fallback;
   return exerciseTranslations[id as keyof typeof exerciseTranslations]?.description ?? fallback;
 }
 
-export function translateExerciseInstructions(id: string, fallback: string[]) {
+export function translateExerciseInstructions(id: string, fallback: string[], language: AppLanguage = "vi") {
+  if (language === "en") return fallback;
   return exerciseTranslations[id as keyof typeof exerciseTranslations]?.instructions ?? fallback;
 }
 
-export function translateExerciseCues(id: string, fallback: string[]) {
+export function translateExerciseCues(id: string, fallback: string[], language: AppLanguage = "vi") {
+  if (language === "en") return fallback;
   return exerciseTranslations[id as keyof typeof exerciseTranslations]?.cues ?? fallback;
+}
+
+export function translatePantryCategory(category: string, language: AppLanguage = "vi") {
+  if (language === "en") return pantryCategoryEnglishLabels[category as keyof typeof pantryCategoryEnglishLabels] ?? category.replaceAll("_", " ");
+  return pantryCategoryLabels[category as keyof typeof pantryCategoryLabels] ?? category;
+}
+
+export function formatQuantityUnit(quantity: number, unit: string, language: AppLanguage = "vi") {
+  const localizedUnit = unitLabels[language][unit as keyof (typeof unitLabels)["vi"]] ?? unit;
+  return `${quantity} ${localizedUnit}`;
 }

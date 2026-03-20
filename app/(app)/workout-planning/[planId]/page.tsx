@@ -8,7 +8,7 @@ export default async function WorkoutPlanDetailPage({
   params: Promise<{ planId: string }>;
 }) {
   await params;
-  const { workoutPlan } = await getDashboardState();
+  const { workoutPlan, settings } = await getDashboardState();
 
   return (
     <div className="space-y-4">
@@ -19,7 +19,7 @@ export default async function WorkoutPlanDetailPage({
         primaryAction={{ label: "Quay lại lịch tập", href: "/workout-planning" }}
         secondaryAction={{ label: "Tổng quan", href: "/dashboard" }}
       />
-      <WorkoutPlanView plan={workoutPlan} />
+      <WorkoutPlanView plan={workoutPlan} language={settings.language} />
     </div>
   );
 }
