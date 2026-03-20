@@ -2,6 +2,7 @@
 
 import type { ReactNode } from "react";
 import { useEffect, useMemo, useState } from "react";
+import { ChevronDown } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { activityLevelLabels, budgetPeriodLabels, equipmentLabels, sexLabels, weekdayLabels, goalLabels } from "@/lib/display";
@@ -320,29 +321,32 @@ function SelectField({ label, name, options, defaultValue, error, onValueChange 
   return (
     <label className="space-y-2">
       <span className="text-sm font-medium text-neutral-700 dark:text-neutral-200">{label}</span>
-      <select
-        className={cn(
-          "app-select",
-          error ? "border-rose-300" : "border-black/10 dark:border-white/10",
-        )}
-        defaultValue={defaultValue}
-        name={name}
-        onChange={(event) => onValueChange?.(event.target.value)}
-      >
-        {options.map((option) => (
-          <option key={option} value={option}>
-            {name === "sex"
-              ? sexLabels[option as keyof typeof sexLabels]
-              : name === "goal"
-                ? goalLabels[option as keyof typeof goalLabels]
-                : name === "activityLevel"
-                  ? activityLevelLabels[option as keyof typeof activityLevelLabels]
-                  : name === "budgetPeriod"
-                    ? budgetPeriodLabels[option as keyof typeof budgetPeriodLabels]
-                    : option.replaceAll("_", " ")}
-          </option>
-        ))}
-      </select>
+      <div className="relative">
+        <select
+          className={cn(
+            "app-select",
+            error ? "border-rose-300" : "border-black/10 dark:border-white/10",
+          )}
+          defaultValue={defaultValue}
+          name={name}
+          onChange={(event) => onValueChange?.(event.target.value)}
+        >
+          {options.map((option) => (
+            <option key={option} value={option}>
+              {name === "sex"
+                ? sexLabels[option as keyof typeof sexLabels]
+                : name === "goal"
+                  ? goalLabels[option as keyof typeof goalLabels]
+                  : name === "activityLevel"
+                    ? activityLevelLabels[option as keyof typeof activityLevelLabels]
+                    : name === "budgetPeriod"
+                      ? budgetPeriodLabels[option as keyof typeof budgetPeriodLabels]
+                      : option.replaceAll("_", " ")}
+            </option>
+          ))}
+        </select>
+        <ChevronDown className="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-neutral-500 dark:text-neutral-300" />
+      </div>
       {error ? <p className="text-xs text-rose-600">{error}</p> : null}
     </label>
   );

@@ -145,10 +145,10 @@ export function MealPlanView({ plan }: MealPlanViewProps) {
                         Cách làm
                       </p>
                       <ol className="mt-2 space-y-2 text-sm text-slate-700 dark:text-slate-200">
-                        {mealInstructions.slice(0, 3).map((step) => (
+                        {mealInstructions.slice(0, 5).map((step, index) => (
                           <li key={`${meal.id}-${step}`} className="flex gap-2">
                             <span className="mt-0.5 h-5 w-5 rounded-full bg-white text-center text-xs font-semibold leading-5 text-emerald-700 dark:bg-white/12 dark:text-emerald-300">
-                              •
+                              {index + 1}
                             </span>
                             <span>{step}</span>
                           </li>

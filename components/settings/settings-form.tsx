@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useMemo, useState, useTransition } from "react";
+import { ChevronDown } from "lucide-react";
 
 import { budgetPeriodLabels, measurementSystemLabels, themeLabels, weekdayLabels } from "@/lib/display";
 import { applyThemePreference, type AppTheme } from "@/lib/theme-client";
@@ -85,57 +86,69 @@ export function SettingsForm({ initialSettings, action }: SettingsFormProps) {
         <div className="mt-5 grid gap-4">
           <label className="space-y-2">
             <span className="text-sm font-medium text-foreground">Theme</span>
-            <select
-              name="theme"
-              value={selectedTheme}
-              onChange={(event) => setSelectedTheme(event.target.value as AppTheme)}
-              className="app-select"
-            >
-              <option value="light">{themeLabels.light}</option>
-              <option value="dark">{themeLabels.dark}</option>
-              <option value="system">{themeLabels.system}</option>
-            </select>
+            <SelectShell>
+              <select
+                name="theme"
+                value={selectedTheme}
+                onChange={(event) => setSelectedTheme(event.target.value as AppTheme)}
+                className="app-select"
+              >
+                <option value="light">{themeLabels.light}</option>
+                <option value="dark">{themeLabels.dark}</option>
+                <option value="system">{themeLabels.system}</option>
+              </select>
+            </SelectShell>
           </label>
 
           <label className="space-y-2">
             <span className="text-sm font-medium text-foreground">Tiền tệ</span>
-            <select name="currency" defaultValue={initialSettings.currency} className="app-select">
-              <option value="VND">VND</option>
-            </select>
+            <SelectShell>
+              <select name="currency" defaultValue={initialSettings.currency} className="app-select">
+                <option value="VND">VND</option>
+              </select>
+            </SelectShell>
           </label>
 
           <label className="space-y-2">
             <span className="text-sm font-medium text-foreground">Ngân sách mặc định</span>
-            <select name="budgetModeDefault" defaultValue={initialSettings.budgetModeDefault} className="app-select">
-              <option value="daily">{budgetPeriodLabels.daily}</option>
-              <option value="weekly">{budgetPeriodLabels.weekly}</option>
-            </select>
+            <SelectShell>
+              <select name="budgetModeDefault" defaultValue={initialSettings.budgetModeDefault} className="app-select">
+                <option value="daily">{budgetPeriodLabels.daily}</option>
+                <option value="weekly">{budgetPeriodLabels.weekly}</option>
+              </select>
+            </SelectShell>
           </label>
 
           <label className="space-y-2">
             <span className="text-sm font-medium text-foreground">Hệ đơn vị</span>
-            <select name="measurementSystem" defaultValue={initialSettings.measurementSystem} className="app-select">
-              <option value="metric">{measurementSystemLabels.metric}</option>
-              <option value="imperial">{measurementSystemLabels.imperial}</option>
-            </select>
+            <SelectShell>
+              <select name="measurementSystem" defaultValue={initialSettings.measurementSystem} className="app-select">
+                <option value="metric">{measurementSystemLabels.metric}</option>
+                <option value="imperial">{measurementSystemLabels.imperial}</option>
+              </select>
+            </SelectShell>
           </label>
 
           <label className="space-y-2">
             <span className="text-sm font-medium text-foreground">Khu vực</span>
-            <select name="region" defaultValue={initialSettings.region} className="app-select">
-              <option value="vi-VN">Việt Nam</option>
-            </select>
+            <SelectShell>
+              <select name="region" defaultValue={initialSettings.region} className="app-select">
+                <option value="vi-VN">Việt Nam</option>
+              </select>
+            </SelectShell>
           </label>
 
           <label className="space-y-2">
             <span className="text-sm font-medium text-foreground">Ngày check-in</span>
-            <select name="weeklyCheckInDay" defaultValue={initialSettings.weeklyCheckInDay} className="app-select">
-              {Object.entries(weekdayLabels).map(([value, label]) => (
-                <option key={value} value={value}>
-                  {label}
-                </option>
-              ))}
-            </select>
+            <SelectShell>
+              <select name="weeklyCheckInDay" defaultValue={initialSettings.weeklyCheckInDay} className="app-select">
+                {Object.entries(weekdayLabels).map(([value, label]) => (
+                  <option key={value} value={value}>
+                    {label}
+                  </option>
+                ))}
+              </select>
+            </SelectShell>
           </label>
 
           <label className="interactive-chip flex items-center gap-3 rounded-2xl border px-4 py-3 text-sm text-foreground">
@@ -162,6 +175,15 @@ export function SettingsForm({ initialSettings, action }: SettingsFormProps) {
           </button>
         </div>
       </form>
+    </div>
+  );
+}
+
+function SelectShell({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="relative">
+      {children}
+      <ChevronDown className="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-neutral-500 dark:text-neutral-300" />
     </div>
   );
 }
