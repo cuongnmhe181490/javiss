@@ -17,11 +17,11 @@ export function WorkoutPlanView({ plan }: WorkoutPlanViewProps) {
         <p className="text-xs font-semibold uppercase tracking-[0.24em] text-emerald-700 dark:text-emerald-300">
           Lịch tập tuần
         </p>
-        <h2 className="mt-3 text-3xl font-semibold tracking-tight text-zinc-950 dark:text-white">
+        <h2 className="mt-3 text-3xl font-semibold tracking-tight text-zinc-950 dark:text-zinc-50">
           Chương trình {labelForGoal(plan.goal)} cho mức {workoutLevelLabels[plan.level]}
         </h2>
-        <p className="mt-3 max-w-xl text-sm leading-6 text-zinc-600 dark:text-zinc-300">
-          Xem từng buổi tập, ngày hồi phục và tổng thời lượng trong tuần.
+        <p className="mt-3 max-w-xl text-sm leading-6 text-zinc-700 dark:text-zinc-300">
+          Xem từng buổi tập, ngày hồi phục và hướng dẫn thực hiện dễ hiểu.
         </p>
       </header>
 

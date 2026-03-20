@@ -2,10 +2,7 @@ import Link from "next/link";
 import { ArrowRight, Sparkles } from "lucide-react";
 
 import { GlassCard } from "@/components/shared/glass-card";
-import {
-  outlineLinkButtonClass,
-  primaryLinkButtonClass,
-} from "@/lib/button-link-styles";
+import { outlineLinkButtonClass, primaryLinkButtonClass } from "@/lib/button-link-styles";
 
 export default function SignUpPage() {
   return (
@@ -15,21 +12,21 @@ export default function SignUpPage() {
           <Sparkles className="size-6" />
         </div>
         <p className="mt-6 text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-muted-foreground">
-          Tao tai khoan
+          Tạo tài khoản
         </p>
         <h1 className="mt-3 text-3xl font-semibold tracking-tight text-foreground">
-          Bat dau voi muc tieu, pantry, ngan sach va thiet bi cua ban.
+          Bắt đầu với mục tiêu, pantry, ngân sách và thiết bị của bạn.
         </h1>
         <p className="mt-3 text-sm leading-6 text-muted-foreground">
-          Luong onboarding da duoc thiet ke san de luu vao Supabase sau nay. Hien tai, ban scaffold nay van mo phong day du route va domain logic bang du lieu mac dinh hop ly.
+          Thiết lập vài thông tin cơ bản để nhận thực đơn và lịch tập phù hợp ngay.
         </p>
         <div className="mt-8 grid gap-3">
           <Link href="/onboarding" className={primaryLinkButtonClass}>
-            Bat dau thiet lap
+            Bắt đầu thiết lập
             <ArrowRight className="ml-2 size-4" />
           </Link>
           <Link href="/" className={outlineLinkButtonClass}>
-            Quay lai trang chu
+            Quay lại trang chủ
           </Link>
         </div>
       </GlassCard>

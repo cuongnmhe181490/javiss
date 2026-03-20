@@ -323,7 +323,7 @@ function buildDays(request: MealPlanRequest, pantry: PantryItem[]) {
       );
 
       if (candidate.budgetCompromised) {
-        warnings.add("Ngân sách hiện tại quá thấp, hệ thống đã chọn phương án rẻ nhất có thể.");
+        warnings.add("Ngân sách hiện tại khá thấp, hệ thống đã chọn phương án tiết kiệm nhất có thể.");
       }
 
       if (candidate.missingPrice) {
@@ -415,7 +415,7 @@ export function generateMealPlan(input: MealPlanRequest): MealPlan {
       version: 2,
       generatedReason:
         request.mode === "pantry"
-          ? "Lập kế hoạch ưu tiên pantry"
+          ? "Lập kế hoạch ưu tiên đồ sẵn có"
           : "Lập kế hoạch theo ngân sách",
       fallbackUsed: built.warnings.length > 0,
       confidence: 0.9,

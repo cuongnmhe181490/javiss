@@ -289,12 +289,12 @@ function buildWorkoutDay(
       index: dayIndex,
       date,
       kind: "rest",
-      label: "Recovery",
+      label: "Hồi phục",
       focus: dayTemplate.focus,
       targetPatterns: [],
       estimatedDurationMin: 20,
       exercises: [],
-      notes: "Use this day for walking, mobility, and lighter recovery work.",
+      notes: "Ưu tiên đi bộ nhẹ, giãn cơ và nghỉ ngơi để cơ thể hồi phục.",
     };
   }
 
@@ -321,8 +321,8 @@ function buildWorkoutDay(
     exercises,
     notes:
       input.goal === "fat_loss"
-        ? "Keep transitions tight and move with a steady pace."
-        : "Own the working sets and keep the rest honest.",
+        ? "Giữ nhịp chuyển động đều, nghỉ ngắn và tập liền mạch."
+        : "Tập chắc ở các hiệp chính và giữ thời gian nghỉ hợp lý.",
   };
 }
 
@@ -355,9 +355,9 @@ function createWeeklySplit(
     if (workoutPosition === -1) {
       return {
         index,
-        label: "Recovery",
+        label: "Hồi phục",
         kind: "rest" as const,
-        focus: "Recovery",
+        focus: "Hồi phục",
         targetPatterns: [],
       };
     }
@@ -367,18 +367,18 @@ function createWeeklySplit(
 
     return {
       index,
-      label: `${input.goal.replaceAll("_", " ")} day ${workoutPosition + 1}`,
+      label: `Buổi ${workoutPosition + 1}`,
       kind: "workout" as const,
       focus:
         targetPatterns.includes("cardio")
-          ? "Conditioning"
+          ? "Cardio"
           : targetPatterns.includes("hinge")
-            ? "Posterior chain"
+            ? "Chuỗi sau"
             : targetPatterns.includes("pull") && targetPatterns.includes("push")
-              ? "Full body"
+              ? "Toàn thân"
               : targetPatterns.includes("push")
-                ? "Upper push"
-                : "Training",
+                ? "Đẩy thân trên"
+                : "Buổi tập",
       targetPatterns,
     };
   });
@@ -422,7 +422,7 @@ export function generateWorkoutPlan(rawInput: WorkoutPlanInput): WorkoutPlan {
       fallbackUsed: summary.trainingDays === 0,
       notes:
         summary.trainingDays === 0
-          ? ["Fallback to recovery-only schedule because no training sessions could be built."]
+          ? ["Không đủ điều kiện để tạo buổi tập phù hợp, hệ thống tạm chuyển sang lịch hồi phục."]
           : [],
     },
   };

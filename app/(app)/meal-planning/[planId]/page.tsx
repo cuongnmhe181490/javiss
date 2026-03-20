@@ -14,11 +14,11 @@ export default async function MealPlanDetailPage({
   return (
     <div className="space-y-4">
       <PageIntro
-        eyebrow="Chi tiet ke hoach bua an"
-        title={`${plan.mode === "pantry" ? "Ke hoach uu tien pantry" : "Ke hoach toi uu ngan sach"} trong tuan`}
-        description="Route chi tiet ke hoach bua an da hoat dong day du, du scaffold hien tai van dang tra ve snapshot mock deterministic."
-        primaryAction={{ label: "Danh sach mua sam", href: "/shopping-list" }}
-        secondaryAction={{ label: "Trung tam bua an", href: "/meal-planning" }}
+        eyebrow="Chi tiết thực đơn"
+        title={`${plan.mode === "pantry" ? "Thực đơn ưu tiên đồ sẵn có" : "Thực đơn tối ưu ngân sách"} trong tuần`}
+        description="Xem món ăn, nguyên liệu chính và cách nấu cho từng ngày."
+        primaryAction={{ label: "Danh sách mua sắm", href: "/shopping-list" }}
+        secondaryAction={{ label: "Kế hoạch bữa ăn", href: "/meal-planning" }}
       />
       <MealPlanView plan={plan} />
     </div>

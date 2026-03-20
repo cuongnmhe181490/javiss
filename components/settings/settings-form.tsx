@@ -3,8 +3,8 @@
 import { useRouter } from "next/navigation";
 import { useMemo, useState, useTransition } from "react";
 
-import { themeLabels, weekdayLabels } from "@/lib/display";
-import { applyThemePreference, type AppTheme } from "@/lib/theme";
+import { budgetPeriodLabels, measurementSystemLabels, themeLabels, weekdayLabels } from "@/lib/display";
+import { applyThemePreference, type AppTheme } from "@/lib/theme-client";
 import type { SettingsRecord } from "@/types/profile";
 
 type SettingsFormProps = {
@@ -27,10 +27,7 @@ export function SettingsForm({ initialSettings, action }: SettingsFormProps) {
   });
   const [success, setSuccess] = useState<string | null>(null);
 
-  const summaryThemeLabel = useMemo(
-    () => themeLabels[selectedTheme],
-    [selectedTheme],
-  );
+  const summaryThemeLabel = useMemo(() => themeLabels[selectedTheme], [selectedTheme]);
 
   return (
     <div className="grid gap-4 lg:grid-cols-2">
@@ -39,11 +36,24 @@ export function SettingsForm({ initialSettings, action }: SettingsFormProps) {
           Đang dùng
         </p>
         <div className="mt-4 space-y-3 text-sm text-muted-foreground">
-          <p><span className="font-medium text-foreground">Theme:</span> {summaryThemeLabel}</p>
-          <p><span className="font-medium text-foreground">Tiền tệ:</span> VND</p>
-          <p><span className="font-medium text-foreground">Ngân sách mặc định:</span> {initialSettings.budgetModeDefault === "weekly" ? "Theo tuần" : "Theo ngày"}</p>
-          <p><span className="font-medium text-foreground">Khu vực:</span> Việt Nam</p>
-          <p><span className="font-medium text-foreground">Ngày check-in:</span> {weekdayLabels[initialSettings.weeklyCheckInDay]}</p>
+          <p>
+            <span className="font-medium text-foreground">Theme:</span> {summaryThemeLabel}
+          </p>
+          <p>
+            <span className="font-medium text-foreground">Tiền tệ:</span> VND
+          </p>
+          <p>
+            <span className="font-medium text-foreground">Ngân sách mặc định:</span>{" "}
+            {budgetPeriodLabels[initialSettings.budgetModeDefault]}
+          </p>
+          <p>
+            <span className="font-medium text-foreground">Hệ đơn vị:</span>{" "}
+            {measurementSystemLabels[initialSettings.measurementSystem]}
+          </p>
+          <p>
+            <span className="font-medium text-foreground">Ngày check-in:</span>{" "}
+            {weekdayLabels[initialSettings.weeklyCheckInDay]}
+          </p>
         </div>
       </div>
 
@@ -69,9 +79,7 @@ export function SettingsForm({ initialSettings, action }: SettingsFormProps) {
           <p className="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-muted-foreground">
             Tùy chỉnh
           </p>
-          <p className="text-sm text-muted-foreground">
-            Áp dụng ngay sau khi lưu.
-          </p>
+          <p className="text-sm text-muted-foreground">Áp dụng ngay sau khi lưu.</p>
         </div>
 
         <div className="mt-5 grid gap-4">
@@ -99,16 +107,16 @@ export function SettingsForm({ initialSettings, action }: SettingsFormProps) {
           <label className="space-y-2">
             <span className="text-sm font-medium text-foreground">Ngân sách mặc định</span>
             <select name="budgetModeDefault" defaultValue={initialSettings.budgetModeDefault} className="app-select">
-              <option value="daily">Theo ngày</option>
-              <option value="weekly">Theo tuần</option>
+              <option value="daily">{budgetPeriodLabels.daily}</option>
+              <option value="weekly">{budgetPeriodLabels.weekly}</option>
             </select>
           </label>
 
           <label className="space-y-2">
             <span className="text-sm font-medium text-foreground">Hệ đơn vị</span>
             <select name="measurementSystem" defaultValue={initialSettings.measurementSystem} className="app-select">
-              <option value="metric">Mét</option>
-              <option value="imperial">Imperial</option>
+              <option value="metric">{measurementSystemLabels.metric}</option>
+              <option value="imperial">{measurementSystemLabels.imperial}</option>
             </select>
           </label>
 

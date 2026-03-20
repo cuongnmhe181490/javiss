@@ -37,11 +37,11 @@ export function PageIntro({
     <GlassCard
       padding="lg"
       className={cn(
-        "relative overflow-hidden border-white/75 bg-white/76",
+        "relative overflow-hidden border-white/75 bg-[linear-gradient(180deg,rgba(255,255,255,0.92),rgba(245,249,246,0.82))] dark:border-white/10 dark:bg-[linear-gradient(180deg,rgba(23,31,40,0.92),rgba(23,33,38,0.88))]",
         className,
       )}
     >
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(107,196,166,0.14),transparent_34%),radial-gradient(circle_at_bottom_left,rgba(235,246,241,0.95),transparent_36%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(107,196,166,0.14),transparent_34%),radial-gradient(circle_at_bottom_left,rgba(235,246,241,0.95),transparent_36%)] dark:bg-[radial-gradient(circle_at_top_right,rgba(82,163,129,0.12),transparent_34%),radial-gradient(circle_at_bottom_left,rgba(22,34,39,0.92),transparent_36%)]" />
       <div className="relative grid gap-8 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)]">
         <motion.div
           initial={{ opacity: 0, y: 14 }}

@@ -43,8 +43,8 @@ export function FeatureGrid() {
 
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         {features.map((feature) => (
-          <GlassCard key={feature.title} padding="md" className="h-full">
-            <div className="flex size-12 items-center justify-center rounded-2xl border border-emerald-100 bg-emerald-50 text-emerald-700 shadow-sm">
+          <GlassCard key={feature.title} padding="md" className="interactive-card h-full">
+            <div className="flex size-12 items-center justify-center rounded-2xl border border-emerald-100 bg-emerald-50 text-emerald-700 shadow-sm dark:border-white/10 dark:bg-white/10 dark:text-white">
               <feature.icon className="size-5" />
             </div>
             <h3 className="mt-4 text-lg font-semibold tracking-tight text-foreground">

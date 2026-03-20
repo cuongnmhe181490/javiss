@@ -44,11 +44,11 @@ export function HeroSection({
   return (
     <section
       className={cn(
-        "relative overflow-hidden rounded-[2rem] border border-white/70 bg-white/72 p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.75),0_28px_80px_-34px_rgba(12,18,28,0.22)] sm:p-8 lg:p-10 dark:border-white/10 dark:bg-white/6 dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_32px_80px_-34px_rgba(0,0,0,0.55)]",
+        "relative overflow-hidden rounded-[2rem] border border-white/70 bg-[linear-gradient(180deg,rgba(255,255,255,0.92),rgba(245,249,246,0.82))] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.8),0_28px_80px_-34px_rgba(12,18,28,0.22)] sm:p-8 lg:p-10 dark:border-white/10 dark:bg-[linear-gradient(180deg,rgba(21,29,39,0.92),rgba(22,33,38,0.88))] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.06),0_32px_80px_-34px_rgba(0,0,0,0.55)]",
         className,
       )}
     >
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(110,208,174,0.16),transparent_30%),radial-gradient(circle_at_90%_10%,rgba(244,250,246,0.95),transparent_35%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(110,208,174,0.14),transparent_30%),radial-gradient(circle_at_90%_10%,rgba(244,250,246,0.92),transparent_35%)] dark:bg-[radial-gradient(circle_at_top_left,rgba(66,153,122,0.16),transparent_32%),radial-gradient(circle_at_90%_10%,rgba(28,38,46,0.86),transparent_38%)]" />
       <div className="relative grid gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-center">
         <motion.div
           initial={{ opacity: 0, y: 18 }}
@@ -56,7 +56,7 @@ export function HeroSection({
           transition={{ duration: 0.55, ease: "easeOut" }}
           className="space-y-6"
         >
-          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-100 bg-emerald-50 px-3 py-1.5 text-[0.72rem] font-semibold uppercase tracking-[0.26em] text-emerald-800">
+          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-100 bg-emerald-50 px-3 py-1.5 text-[0.72rem] font-semibold uppercase tracking-[0.26em] text-emerald-800 dark:border-white/10 dark:bg-white/10 dark:text-emerald-200">
             <Sprout className="size-3.5" />
             {eyebrow}
           </div>
@@ -110,7 +110,7 @@ export function HeroSection({
                   Gợi ý rõ và dễ làm
                 </p>
               </div>
-              <div className="rounded-full border border-emerald-100 bg-emerald-50 px-3 py-1 text-xs font-medium text-emerald-800">
+              <div className="rounded-full border border-emerald-100 bg-emerald-50 px-3 py-1 text-xs font-medium text-emerald-800 dark:border-white/10 dark:bg-white/10 dark:text-emerald-200">
                 Sẵn sàng
               </div>
             </div>
@@ -119,8 +119,8 @@ export function HeroSection({
               {stats.map((stat) => (
                 <div
                   key={stat.label}
-                className="rounded-[1.2rem] border border-white/80 bg-white/75 p-4 dark:border-white/10 dark:bg-white/6"
-              >
+                  className="interactive-card rounded-[1.2rem] border border-white/80 bg-white/80 p-4 dark:border-white/10 dark:bg-white/8"
+                >
                   <p className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-muted-foreground">
                     {stat.label}
                   </p>
@@ -131,8 +131,8 @@ export function HeroSection({
               ))}
             </div>
 
-            <div className="rounded-[1.4rem] border border-emerald-100 bg-[linear-gradient(180deg,rgba(244,250,246,0.96),rgba(255,255,255,0.9))] p-4 dark:border-white/10 dark:bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03))]">
-              <div className="flex items-center gap-2 text-sm font-medium text-emerald-900">
+            <div className="rounded-[1.4rem] border border-emerald-100 bg-[linear-gradient(180deg,rgba(244,250,246,0.96),rgba(255,255,255,0.9))] p-4 dark:border-white/10 dark:bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.04))]">
+              <div className="flex items-center gap-2 text-sm font-medium text-emerald-900 dark:text-emerald-200">
                 <CheckCircle2 className="size-4" />
                 Thiết kế để hành động
               </div>
@@ -151,7 +151,7 @@ export function HeroSection({
 
 function FeatureBadge({ text }: { text: string }) {
   return (
-    <div className="rounded-full border border-white/80 bg-white/80 px-3 py-2 text-center text-sm font-medium text-foreground shadow-[inset_0_1px_0_rgba(255,255,255,0.82),0_12px_24px_-20px_rgba(12,18,28,0.22)] dark:border-white/10 dark:bg-white/8 dark:shadow-none">
+    <div className="interactive-chip rounded-full border border-white/80 bg-white/82 px-3 py-2 text-center text-sm font-medium text-foreground shadow-[inset_0_1px_0_rgba(255,255,255,0.82),0_12px_24px_-20px_rgba(12,18,28,0.22)] dark:border-white/10 dark:bg-white/8 dark:shadow-none">
       {text}
     </div>
   );
