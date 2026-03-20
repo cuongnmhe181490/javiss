@@ -65,6 +65,8 @@ export type PlannedMeal = RecipeTemplate & {
   scaledIngredients: RecipeIngredient[];
   estimatedNutrition: NutritionSummary;
   sourceRecipeId: string;
+  estimatedCost: number;
+  currency: "VND";
 };
 
 export type DayPlan = {
@@ -72,6 +74,7 @@ export type DayPlan = {
   meals: PlannedMeal[];
   dailyCalories: number;
   dailyMacros: NutritionSummary;
+  dailyEstimatedCost: number;
   dayNotes: string;
 };
 
@@ -102,6 +105,19 @@ export type MealPlanMetadata = {
   confidence: number;
   pantryMode: boolean;
   budgetMode: boolean;
+  warnings: string[];
+};
+
+export type MealPlanCostSummary = {
+  totalMealCost: number;
+  totalRequiredShoppingCost: number;
+  totalCoveredShoppingCost: number;
+  totalBuyShoppingCost: number;
+  averageDailyCost: number;
+  currency: "VND";
+  budgetAmount?: number;
+  budgetPeriod?: "day" | "week";
+  withinBudget: boolean;
 };
 
 export type MealPlan = {
@@ -112,6 +128,7 @@ export type MealPlan = {
   weekStartDate: string;
   days: DayPlan[];
   weeklyNutritionSummary: NutritionSummary;
+  costSummary: MealPlanCostSummary;
   shoppingList: ShoppingList;
   pantryReconciliation: PantryMatchResult;
   metadata: MealPlanMetadata;

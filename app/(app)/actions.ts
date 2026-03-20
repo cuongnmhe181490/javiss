@@ -55,7 +55,10 @@ export async function clearPantryAction() {
 export async function saveSettingsAction(formData: FormData) {
   const parsed = settingsInputSchema.parse({
     theme: formData.get("theme"),
+    currency: formData.get("currency"),
+    budgetModeDefault: formData.get("budgetModeDefault"),
     measurementSystem: formData.get("measurementSystem"),
+    region: formData.get("region"),
     notificationsEnabled: formData.get("notificationsEnabled") === "on",
     weeklyCheckInDay: formData.get("weeklyCheckInDay"),
     treeAnimationEnabled: formData.get("treeAnimationEnabled") === "on",

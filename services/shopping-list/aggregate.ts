@@ -1,6 +1,7 @@
 import type { MealPlan } from "../meal-planning/types";
 import { normalizePantryItems, matchPantryQuantity } from "../pantry";
 import type { PantryItemInput } from "../pantry/types";
+import { calculateIngredientCost, DEFAULT_CURRENCY } from "../pricing";
 import type { ShoppingList, ShoppingListGroup, ShoppingListLine } from "./types";
 
 function round(value: number) {
@@ -21,6 +22,9 @@ function groupByCategory(lines: ShoppingListLine[]): ShoppingListGroup[] {
     totalRequiredQuantity: round(items.reduce((sum, item) => sum + item.requiredQuantity, 0)),
     totalAvailableQuantity: round(items.reduce((sum, item) => sum + item.availableQuantity, 0)),
     totalBuyQuantity: round(items.reduce((sum, item) => sum + item.buyQuantity, 0)),
+    totalRequiredCost: round(items.reduce((sum, item) => sum + item.requiredCost, 0)),
+    totalCoveredCost: round(items.reduce((sum, item) => sum + item.coveredCost, 0)),
+    totalBuyCost: round(items.reduce((sum, item) => sum + item.buyCost, 0)),
   }));
 }
 
@@ -59,6 +63,21 @@ export function aggregateShoppingList(plan: MealPlan, pantrySnapshot: PantryItem
     const availableQuantity = pantryMatch ? matchPantryQuantity(ingredient.requiredQuantity, ingredient.unit, pantryMatch) : 0;
     const buyQuantity = Math.max(ingredient.requiredQuantity - availableQuantity, 0);
     const checkedState: ShoppingListLine["checkedState"] = buyQuantity > 0 ? "none" : "already_have";
+    const requiredCost = calculateIngredientCost({
+      normalizedName: ingredient.normalizedName,
+      quantity: ingredient.requiredQuantity,
+      unit: ingredient.unit,
+    });
+    const coveredCost = calculateIngredientCost({
+      normalizedName: ingredient.normalizedName,
+      quantity: availableQuantity,
+      unit: ingredient.unit,
+    });
+    const buyCost = calculateIngredientCost({
+      normalizedName: ingredient.normalizedName,
+      quantity: buyQuantity,
+      unit: ingredient.unit,
+    });
 
     return {
       name: ingredient.name,
@@ -66,6 +85,11 @@ export function aggregateShoppingList(plan: MealPlan, pantrySnapshot: PantryItem
       requiredQuantity: round(ingredient.requiredQuantity),
       availableQuantity: round(availableQuantity),
       buyQuantity: round(buyQuantity),
+      estimatedUnitPrice: requiredCost.estimatedUnitPrice,
+      requiredCost: requiredCost.estimatedCost,
+      coveredCost: coveredCost.estimatedCost,
+      buyCost: buyCost.estimatedCost,
+      currency: DEFAULT_CURRENCY,
       unit: ingredient.unit,
       category: ingredient.category,
       checkedState,
@@ -80,6 +104,10 @@ export function aggregateShoppingList(plan: MealPlan, pantrySnapshot: PantryItem
       requiredItems: items.length,
       pantryCoveredItems: items.filter((item) => item.buyQuantity === 0).length,
       buyItems: items.filter((item) => item.buyQuantity > 0).length,
+      totalRequiredCost: round(items.reduce((sum, item) => sum + item.requiredCost, 0)),
+      totalCoveredCost: round(items.reduce((sum, item) => sum + item.coveredCost, 0)),
+      totalBuyCost: round(items.reduce((sum, item) => sum + item.buyCost, 0)),
+      currency: DEFAULT_CURRENCY,
     },
     pantryReconciliation: {
       matches: items.filter((item) => item.availableQuantity > 0).map((item) => ({

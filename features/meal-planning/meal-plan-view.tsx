@@ -1,4 +1,5 @@
 import { Button } from "../../components/ui/button";
+import { formatCurrency } from "../../services/pricing";
 import type { MealPlan } from "../../services/meal-planning/types";
 
 type MealPlanViewProps = {
@@ -38,8 +39,8 @@ export function MealPlanView({ plan }: MealPlanViewProps) {
 
       <section className="grid gap-4 md:grid-cols-3">
         <Stat label="Calo" value={Math.round(plan.weeklyNutritionSummary.calories).toString()} />
-        <Stat label="Protein" value={`${Math.round(plan.weeklyNutritionSummary.protein)}g`} />
-        <Stat label="Mon can mua" value={plan.shoppingList.items.length.toString()} />
+        <Stat label="Chi phi tuan" value={formatCurrency(plan.costSummary.totalMealCost)} />
+        <Stat label="Can mua" value={formatCurrency(plan.costSummary.totalBuyShoppingCost)} />
       </section>
 
       <div className="space-y-4">
@@ -58,6 +59,7 @@ export function MealPlanView({ plan }: MealPlanViewProps) {
                 <p>
                   {Math.round(day.dailyMacros.protein)}g dam / {Math.round(day.dailyMacros.carbs)}g carb / {Math.round(day.dailyMacros.fat)}g beo
                 </p>
+                <p>{formatCurrency(day.dailyEstimatedCost)}</p>
               </div>
             </div>
 
@@ -93,6 +95,7 @@ export function MealPlanView({ plan }: MealPlanViewProps) {
                     <p>
                       {Math.round(meal.estimatedNutrition.calories)} calo / {Math.round(meal.estimatedNutrition.protein)}g dam
                     </p>
+                    <p>{formatCurrency(meal.estimatedCost)}</p>
                   </div>
                   <ul className="mt-4 space-y-2 text-sm text-slate-600">
                     {meal.scaledIngredients.slice(0, 4).map((ingredient) => (

@@ -80,7 +80,10 @@ function fallbackProfileInput(): ProfileInput {
 function fallbackSettingsInput(): SettingsInput {
   return {
     theme: mockSettings.theme,
+    currency: mockSettings.currency,
+    budgetModeDefault: mockSettings.budgetModeDefault,
     measurementSystem: mockSettings.measurementSystem,
+    region: mockSettings.region,
     notificationsEnabled: mockSettings.notificationsEnabled,
     weeklyCheckInDay: mockSettings.weeklyCheckInDay as SettingsInput["weeklyCheckInDay"],
     treeAnimationEnabled: mockSettings.treeAnimationEnabled,

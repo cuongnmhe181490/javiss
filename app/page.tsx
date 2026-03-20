@@ -9,27 +9,23 @@ import { outlineLinkButtonClass } from "@/lib/button-link-styles";
 
 const stages = [
   {
-    title: "Lap ke hoach tu pantry",
-    description:
-      "Uu tien nguyen lieu dang co san trong nha, sau do moi tinh phan thuc su can mua them.",
+    title: "Lập từ pantry",
+    description: "Ưu tiên món từ đồ sẵn có.",
     icon: ShoppingBasket,
   },
   {
-    title: "Toi uu ca tuan theo ngan sach",
-    description:
-      "Can bang calo, macro, thoi gian che bien va chi phi ma van giu duoc tinh thuc te.",
+    title: "Bám ngân sách tuần",
+    description: "Tính tiền từ nguyên liệu thật.",
     icon: HeartPulse,
   },
   {
-    title: "Giup lich tap thuc te hon",
-    description:
-      "Tao lich tap hang tuan cho o nha hoac phong gym, co bai thay the khi thieu dung cu.",
+    title: "Lịch tập đúng ngữ cảnh",
+    description: "Ở nhà hay gym đều có bài phù hợp.",
     icon: Bot,
   },
   {
-    title: "Bien su deu dan thanh tien bo de nhin thay",
-    description:
-      "Chuoi ngay va cay phat trien giup ban thay tien bo ro rang ma van giu giao dien thanh lich.",
+    title: "Tiến độ nhìn thấy được",
+    description: "Chuỗi ngày và cây phát triển đủ tinh tế.",
     icon: Trees,
   },
 ];
@@ -38,23 +34,23 @@ export default function Home() {
   return (
     <main className="mx-auto flex w-full max-w-[1320px] flex-col gap-6 px-4 py-4 sm:px-6 lg:px-8">
       <HeroSection
-        title="Len ke hoach song lanh manh cho ca tuan voi bua an theo pantry, lich tap thuc te va giao dien cao cap, de dung."
-        description="Javiss xem pantry, ngan sach, thoi gian nau, so thich ca nhan va thiet bi tap luyen la du lieu cau truc ngay tu dau. Ket qua la mot san pham thuc su huu dung, khong phai demo AI don thuan."
-        primaryAction={{ label: "Mo tong quan", href: "/dashboard" }}
-        secondaryAction={{ label: "Tao tai khoan", href: "/auth/sign-up" }}
+        title="Lập kế hoạch ăn uống và tập luyện gọn, đẹp, dùng được mỗi ngày."
+        description="Từ pantry, ngân sách đến lịch tập, mọi quyết định đều đi theo dữ liệu có cấu trúc."
+        primaryAction={{ label: "Mở tổng quan", href: "/dashboard" }}
+        secondaryAction={{ label: "Tạo tài khoản", href: "/auth/sign-up" }}
         stats={[
-          { label: "Che do lap ke hoach", value: "Pantry + Ngan sach" },
-          { label: "Pham vi tap luyen", value: "O nha + Gym" },
-          { label: "Vong lap dong luc", value: "Chuoi ngay + Cay" },
-          { label: "Kien truc", value: "Deterministic truoc" },
+          { label: "Chế độ", value: "Pantry + Ngân sách" },
+          { label: "Tập luyện", value: "Ở nhà + Gym" },
+          { label: "Động lực", value: "Chuỗi ngày + Cây" },
+          { label: "Kiến trúc", value: "Deterministic trước" },
         ]}
       >
         <GlassCard padding="md" className="grid gap-3">
           <p className="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-muted-foreground">
-            Cac giai doan thuc hien
+            Lộ trình
           </p>
           <div className="grid gap-2">
-            {["Len ke hoach", "Dung khung", "Tinh nang cot loi", "Tich hop", "Hoan thien QA"].map(
+            {["Lập kế hoạch", "Dựng khung", "Tính năng cốt lõi", "Tích hợp", "Hoàn thiện QA"].map(
               (step, index) => (
                 <div
                   key={step}
@@ -74,12 +70,12 @@ export default function Home() {
       <FeatureGrid />
 
       <SectionHeader
-        eyebrow="Chien luoc san pham"
-        title="Logic ung dung co cau truc truoc, diem mo rong AI sau"
-        description="Bo khung hien tai da tach route, domain service, data contract va ranh gioi provider de co the nang cap de xuat AI ma khong phai viet lai ung dung."
+        eyebrow="Chiến lược"
+        title="Logic có cấu trúc trước. AI mở rộng sau."
+        description="Ưu tiên workflow rõ ràng, typed và dễ bảo trì."
         action={
           <Link href="/dashboard" className={outlineLinkButtonClass}>
-            Kham pha ung dung
+            Khám phá ứng dụng
             <ArrowRight className="ml-2 size-4" />
           </Link>
         }
@@ -104,23 +100,21 @@ export default function Home() {
       <GlassCard padding="lg" className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
         <div className="space-y-3">
           <p className="text-[0.72rem] font-semibold uppercase tracking-[0.26em] text-muted-foreground">
-            Bo khung chat luong startup
+            Nền tảng hiện tại
           </p>
           <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground">
-            San sang de demo voi nguoi dung ngay bay gio va mo rong AI sau nay.
+            Đủ tốt để demo, đủ sạch để mở rộng.
           </h2>
-          <p className="max-w-2xl text-sm leading-7 text-muted-foreground">
-            Bo khung hien tai da co kien truc route, bo lap ke hoach mock theo huong deterministic,
-            ranh gioi persistence voi Supabase, validation, UI primitive dung chung,
-            va service co the test duoc cho bua an, danh sach mua sam, pantry va tap luyen.
+          <p className="max-w-xl text-sm leading-6 text-muted-foreground">
+            Kiến trúc route, planner, validation và persistence boundary đã sẵn để đi tiếp vào bản production.
           </p>
         </div>
         <div className="grid gap-3">
           {[
             "Next.js App Router + TypeScript",
             "Tailwind CSS + shadcn/ui + Framer Motion",
-            "Khung auth va database voi Supabase",
-            "Service tao ke hoach bua an va tap luyen co typing day du",
+            "Khung auth và database với Supabase",
+            "Service tạo kế hoạch bữa ăn và tập luyện có typing đầy đủ",
           ].map((item) => (
             <div
               key={item}

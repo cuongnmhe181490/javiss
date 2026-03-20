@@ -1,11 +1,11 @@
 import type { AppNavItem } from "@/components/layout/app-shell";
 
 export const appNavItems: AppNavItem[] = [
-  { label: "Tong quan", href: "/dashboard", description: "Tien do va chuoi ngay", exact: true },
-  { label: "Bua an", href: "/meal-planning", description: "Theo pantry va ngan sach" },
-  { label: "Mua sam", href: "/shopping-list", description: "Danh sach can mua" },
-  { label: "Tap luyen", href: "/workout-planning", description: "Lich tap theo thiet bi" },
-  { label: "Pantry", href: "/pantry", description: "Nguyen lieu va han dung" },
-  { label: "Ho so", href: "/profile", description: "Muc tieu va so thich" },
-  { label: "Cai dat", href: "/settings", description: "Trang thai luu du lieu" },
+  { label: "Tổng quan", href: "/dashboard", description: "Tiến độ hôm nay", exact: true },
+  { label: "Bữa ăn", href: "/meal-planning", description: "Pantry và ngân sách" },
+  { label: "Mua sắm", href: "/shopping-list", description: "Cần mua gì" },
+  { label: "Tập luyện", href: "/workout-planning", description: "Lịch theo thiết bị" },
+  { label: "Pantry", href: "/pantry", description: "Nguyên liệu sẵn có" },
+  { label: "Hồ sơ", href: "/profile", description: "Mục tiêu cá nhân" },
+  { label: "Cài đặt", href: "/settings", description: "Giao diện và vùng" },
 ];

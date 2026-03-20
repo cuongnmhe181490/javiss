@@ -26,28 +26,28 @@ const stageMeta: Record<
   }
 > = {
   seed: {
-    label: "Hat giong",
-    description: "Thoi quen bat dau duoc hinh thanh.",
+    label: "Hạt giống",
+    description: "Thói quen mới vừa bắt đầu.",
     Icon: Sprout,
   },
   sprout: {
-    label: "Mam non",
-    description: "Su deu dan dang bat dau thay ro.",
+    label: "Mầm non",
+    description: "Nhịp sống đều hơn mỗi ngày.",
     Icon: Leaf,
   },
   young_tree: {
-    label: "Cay non",
-    description: "Nep song moi dang dan be re.",
+    label: "Cây non",
+    description: "Nếp sống mới đã bắt đầu bám rễ.",
     Icon: TreePine,
   },
   mature_tree: {
-    label: "Cay truong thanh",
-    description: "Dong luc da on dinh va ben vung hon.",
+    label: "Cây trưởng thành",
+    description: "Đà tiến bộ đang ổn định hơn.",
     Icon: TreePine,
   },
   flowering_tree: {
-    label: "Cay ra hoa",
-    description: "He thong thoi quen da ben vung va de duy tri.",
+    label: "Cây ra hoa",
+    description: "Thói quen bền vững đã hình thành.",
     Icon: Flower2,
   },
 };
@@ -114,7 +114,7 @@ export function TreeProgress({
             </div>
             <div>
               <p className="text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-muted-foreground">
-                Giai doan cay
+                Giai đoạn cây
               </p>
               <h3 className="text-2xl font-semibold tracking-tight text-foreground">
                 {meta.label}
@@ -127,15 +127,14 @@ export function TreeProgress({
           </p>
 
           <div className="grid gap-3 sm:grid-cols-3">
-            <StatRow label="Current streak" value={`${streak} days`} />
-            <StatRow label="Chuoi hien tai" value={`${streak} ngay`} />
-            <StatRow label="Ky luc" value={`${bestStreak} ngay`} />
-            <StatRow label="Do deu tuan nay" value={`${weeklyConsistency}%`} />
+            <StatRow label="Chuỗi hiện tại" value={`${streak} ngày`} />
+            <StatRow label="Kỷ lục" value={`${bestStreak} ngày`} />
+            <StatRow label="Độ đều tuần này" value={`${weeklyConsistency}%`} />
           </div>
 
           <div className="space-y-2">
             <div className="flex items-center justify-between text-sm">
-              <span className="font-medium text-foreground">Tien do phat trien</span>
+              <span className="font-medium text-foreground">Tiến độ phát triển</span>
               <span className="text-muted-foreground">{Math.round(progress)}%</span>
             </div>
             <div className="h-3 overflow-hidden rounded-full bg-emerald-50">
@@ -161,7 +160,7 @@ export function TreeProgress({
                       : "border-border bg-white/70 text-muted-foreground",
                   )}
                 >
-                  {item.replaceAll("_", " ")}
+                  {stageMeta[item].label}
                 </span>
               );
             })}

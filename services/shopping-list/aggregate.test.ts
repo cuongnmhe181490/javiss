@@ -29,5 +29,7 @@ describe("aggregateShoppingList", () => {
 
     expect(shoppingList.items.length).toBeGreaterThan(0);
     expect(shoppingList.totals.requiredItems).toBeGreaterThan(0);
+    expect(shoppingList.totals.totalRequiredCost).toBeGreaterThan(0);
+    expect(shoppingList.totals.totalBuyCost).toBeGreaterThanOrEqual(0);
   });
 });

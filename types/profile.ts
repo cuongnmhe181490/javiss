@@ -31,7 +31,10 @@ export interface ProfilePreferences {
 export interface SettingsRecord {
   userId: string;
   theme: z.infer<typeof settingsInputSchema>["theme"];
+  currency: z.infer<typeof settingsInputSchema>["currency"];
+  budgetModeDefault: z.infer<typeof settingsInputSchema>["budgetModeDefault"];
   measurementSystem: z.infer<typeof settingsInputSchema>["measurementSystem"];
+  region: z.infer<typeof settingsInputSchema>["region"];
   notificationsEnabled: z.infer<typeof settingsInputSchema>["notificationsEnabled"];
   weeklyCheckInDay: z.infer<typeof settingsInputSchema>["weeklyCheckInDay"];
   treeAnimationEnabled: z.infer<typeof settingsInputSchema>["treeAnimationEnabled"];

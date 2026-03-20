@@ -48,7 +48,7 @@ const massUnits = new Set(["g", "gram", "grams", "kg", "kilogram", "kilograms", 
 const volumeUnits = new Set(["ml", "milliliter", "milliliters", "l", "liter", "liters", "tbsp", "tablespoon", "tablespoons", "tsp", "teaspoon", "teaspoons", "cup", "cups"]);
 const countUnits = new Set(["piece", "pieces", "egg", "eggs", "clove", "cloves", "slice", "slices", "can", "cans"]);
 
-function normalizeName(value: string) {
+export function normalizeIngredientName(value: string) {
   const cleaned = value
     .toLowerCase()
     .replace(/[(),.%]/g, " ")
@@ -59,7 +59,7 @@ function normalizeName(value: string) {
   return ingredientAliases[cleaned] ?? cleaned;
 }
 
-function normalizeUnit(unit: string) {
+export function normalizeUnit(unit: string) {
   const cleaned = unit.toLowerCase().trim();
   if (cleaned === "kg" || cleaned === "kilogram" || cleaned === "kilograms") return "g";
   if (cleaned === "mg" || cleaned === "milligram" || cleaned === "milligrams") return "g";
@@ -76,7 +76,7 @@ function normalizeUnit(unit: string) {
   return cleaned;
 }
 
-function toBaseQuantity(quantity: number, unit: string) {
+export function toBaseQuantity(quantity: number, unit: string) {
   const normalized = normalizeUnit(unit);
   if (normalized === "g") return unit.toLowerCase().startsWith("k") ? quantity * 1000 : quantity;
   if (normalized === "ml") return unit.toLowerCase().startsWith("l") ? quantity * 1000 : quantity;
@@ -87,7 +87,7 @@ function toBaseQuantity(quantity: number, unit: string) {
 }
 
 export function inferPantryCategory(name: string): PantryCategory {
-  const normalizedName = normalizeName(name);
+  const normalizedName = normalizeIngredientName(name);
   for (const [needle, category] of Object.entries(categoryFallbacks)) {
     if (normalizedName.includes(needle)) return category;
   }
@@ -99,7 +99,7 @@ export function normalizePantryItems(items: PantryItemInput[]): PantryItem[] {
     const normalizedUnit = normalizeUnit(item.unit);
     return {
       ...item,
-      normalizedName: normalizeName(item.name),
+      normalizedName: normalizeIngredientName(item.name),
       normalizedUnit,
       baseQuantity: toBaseQuantity(item.quantity, item.unit),
       baseUnit: normalizedUnit,

@@ -6,6 +6,11 @@ export type ShoppingListLine = {
   requiredQuantity: number;
   availableQuantity: number;
   buyQuantity: number;
+  estimatedUnitPrice: number;
+  requiredCost: number;
+  coveredCost: number;
+  buyCost: number;
+  currency: "VND";
   unit: string;
   category: PantryCategory;
   checkedState: "none" | "already_have" | "bought";
@@ -18,12 +23,19 @@ export type ShoppingListGroup = {
   totalRequiredQuantity: number;
   totalAvailableQuantity: number;
   totalBuyQuantity: number;
+  totalRequiredCost: number;
+  totalCoveredCost: number;
+  totalBuyCost: number;
 };
 
 export type ShoppingListTotals = {
   requiredItems: number;
   pantryCoveredItems: number;
   buyItems: number;
+  totalRequiredCost: number;
+  totalCoveredCost: number;
+  totalBuyCost: number;
+  currency: "VND";
 };
 
 export type ShoppingList = {

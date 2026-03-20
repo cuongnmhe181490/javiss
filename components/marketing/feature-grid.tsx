@@ -11,23 +11,23 @@ type Feature = {
 
 const features: Feature[] = [
   {
-    title: "Thuc don ton trong pantry thuc te",
-    description: "Uu tien nguyen lieu dang co san, sau do moi bo sung danh sach can mua da duoc chuan hoa.",
+    title: "Bữa ăn bám pantry",
+    description: "Ưu tiên món từ nguyên liệu sẵn có.",
     icon: ShoppingBasket,
   },
   {
-    title: "Lap ke hoach theo ngan sach ca tuan",
-    description: "Can bang chi phi, thoi gian nau va dinh duong ma khong bien thanh de xuat chung chung.",
+    title: "Ngân sách rõ ràng",
+    description: "Tính tiền từ nguyên liệu, không ước lượng mơ hồ.",
     icon: ChefHat,
   },
   {
-    title: "Lich tap phu hop dung cu ban co",
-    description: "Ca o nha lan phong gym deu thuc te hon nho logic thay the bai tap va tien trinh ro rang.",
+    title: "Lịch tập đúng thiết bị",
+    description: "Ở nhà hay phòng gym đều có phương án hợp lý.",
     icon: Dumbbell,
   },
   {
-    title: "Hien thi tien do thanh lich",
-    description: "Chuoi ngay va cay phat trien tao dong luc ma van giu phong cach truong thanh, de nhin.",
+    title: "Tiến độ dễ theo dõi",
+    description: "Chuỗi ngày và cây phát triển vừa đủ tinh tế.",
     icon: Sprout,
   },
 ];
@@ -36,9 +36,9 @@ export function FeatureGrid() {
   return (
     <div className="space-y-5">
       <SectionHeader
-        eyebrow="Gia tri cot loi"
-        title="Mot he thong nhe nhang cho quyet dinh moi ngay"
-        description="Giao dien duoc thiet ke de giam ma sat: mot noi cho ke hoach, mot noi cho pantry, va mot noi de thay tien do."
+        eyebrow="Giá trị cốt lõi"
+        title="Ít chữ. Rõ việc. Dễ bám."
+        description="Một nơi để ăn, tập và mua sắm."
       />
 
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">

@@ -58,7 +58,7 @@ export function PageIntro({
             <h1 className="max-w-3xl text-4xl font-semibold tracking-tight text-balance text-foreground md:text-5xl">
               {title}
             </h1>
-            <p className="max-w-2xl text-sm leading-7 text-muted-foreground md:text-base">
+            <p className="max-w-xl text-sm leading-6 text-muted-foreground md:text-base">
               {description}
             </p>
           </div>

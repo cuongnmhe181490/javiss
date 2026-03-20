@@ -1,5 +1,6 @@
 "use client";
 
+import { formatCurrency } from "@/services/pricing";
 import { cn } from "@/lib/utils";
 import type { ProfileRecord } from "@/types/profile";
 
@@ -42,7 +43,9 @@ export function ProfileSummaryCard({ profile, className }: ProfileSummaryCardPro
         <div>
           <dt className="text-neutral-500">Ngan sach</dt>
           <dd className="mt-1 font-medium text-neutral-950">
-            {profile.budgetAmount ? `${profile.budgetAmount} / ${profile.budgetPeriod}` : "Linh hoat"}
+            {profile.budgetAmount
+              ? `${formatCurrency(profile.budgetAmount)} / ${profile.budgetPeriod}`
+              : "Linh hoat"}
           </dd>
         </div>
         <div>

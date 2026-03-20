@@ -14,6 +14,7 @@ import { GlassCard } from "@/components/shared/glass-card";
 import { PageIntro } from "@/components/shared/page-intro";
 import { outlineLinkButtonClass } from "@/lib/button-link-styles";
 import { getDashboardState } from "@/lib/demo-data";
+import { formatCurrency } from "@/services/pricing";
 
 export default async function DashboardPage() {
   const state = await getDashboardState();
@@ -23,15 +24,15 @@ export default async function DashboardPage() {
   return (
     <div className="space-y-4">
       <PageIntro
-        eyebrow="Tong quan"
-        title={`Tien do song lanh manh cua ${state.profile.displayName}`}
-        description="Bua an, lich tap, mua sam va muc do deu dan dang cung doc tu mot nguon du lieu co cau truc, san sang cho persistence that."
-        primaryAction={{ label: "Lap tu pantry", href: "/meal-planning/pantry" }}
-        secondaryAction={{ label: "Xem danh sach mua sam", href: "/shopping-list" }}
+        eyebrow="Tổng quan"
+        title={`Tiến độ hôm nay của ${state.profile.displayName}`}
+        description="Ăn, tập và mua sắm trong một nơi."
+        primaryAction={{ label: "Lập từ pantry", href: "/meal-planning/pantry" }}
+        secondaryAction={{ label: "Mở mua sắm", href: "/shopping-list" }}
       >
         <GlassCard padding="md" className="grid gap-3">
           <p className="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-muted-foreground">
-            Tong quan hom nay
+            Hôm nay
           </p>
           <div className="grid gap-3 sm:grid-cols-2">
             <div className="rounded-[1.2rem] border border-white/80 bg-white/78 p-4">
@@ -44,10 +45,10 @@ export default async function DashboardPage() {
             </div>
             <div className="rounded-[1.2rem] border border-white/80 bg-white/78 p-4">
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground">
-                Tap luyen
+                Tập luyện
               </p>
               <p className="mt-1 text-2xl font-semibold tracking-tight text-foreground">
-                {nextWorkout?.estimatedDurationMin ?? 20} phut
+                {nextWorkout?.estimatedDurationMin ?? 20} phút
               </p>
             </div>
           </div>
@@ -56,29 +57,29 @@ export default async function DashboardPage() {
 
       <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         <MetricCard
-          label="Chuoi hien tai"
-          value={`${state.streak.current} ngay`}
-          detail="Bua an va buoi tap da hoan thanh trong tuan dang dong gop vao tien do phat trien cua cay."
-          delta={`Ky luc ${state.streak.best}`}
+          label="Chuỗi hiện tại"
+          value={`${state.streak.current} ngày`}
+          detail="Bữa ăn và buổi tập đã hoàn thành trong tuần."
+          delta={`Kỷ lục ${state.streak.best}`}
           icon={Trees}
           accent="positive"
         />
         <MetricCard
-          label="Ngan sach tuan"
-          value={`$${state.profile.budgetAmount}`}
-          detail="Lap ke hoach theo ngan sach giup giu chi phi phu hop voi thoi gian nau va muc tieu macro."
+          label="Ngân sách tuần"
+          value={formatCurrency(state.profile.budgetAmount ?? 0)}
+          detail={`Cần mua ${formatCurrency(state.pantryPlan.costSummary.totalBuyShoppingCost)} cho kế hoạch hiện tại.`}
           icon={Target}
         />
         <MetricCard
-          label="Do phu pantry"
-          value={`${state.pantryPlan.shoppingList.totals.pantryCoveredItems} mon`}
-          detail="Nguyen lieu dang co duoc tru ra truoc khi chot danh sach can mua."
+          label="Độ phủ pantry"
+          value={`${state.pantryPlan.shoppingList.totals.pantryCoveredItems} món`}
+          detail="Nguyên liệu sẵn có được trừ trước khi chốt danh sách mua."
           icon={ShoppingBasket}
         />
         <MetricCard
-          label="Lich tap tuan"
-          value={`${state.workoutPlan.daysPerWeek} buoi`}
-          detail="Cac buoi tap duoc phan bo theo so thich va thiet bi san co."
+          label="Lịch tập tuần"
+          value={`${state.workoutPlan.daysPerWeek} buổi`}
+          detail="Các buổi tập được phân theo sở thích và thiết bị."
           icon={CalendarCheck2}
         />
       </section>
@@ -96,17 +97,17 @@ export default async function DashboardPage() {
           <div className="flex items-center justify-between gap-3">
             <div>
               <p className="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-muted-foreground">
-                Bua an hom nay
+                Bữa ăn hôm nay
               </p>
               <h2 className="mt-1 text-2xl font-semibold tracking-tight text-foreground">
-                Lich uu tien pantry
+                Ưu tiên pantry
               </h2>
             </div>
             <Link
               href="/meal-planning/pantry"
               className={outlineLinkButtonClass}
             >
-              Mo thuc don
+              Mở thực đơn
             </Link>
           </div>
           <div className="mt-5 grid gap-3">
@@ -127,8 +128,8 @@ export default async function DashboardPage() {
                 <p className="mt-2 text-sm leading-6 text-muted-foreground">{meal.description}</p>
                 <div className="mt-3 flex flex-wrap gap-2 text-xs text-muted-foreground">
                   <span>{Math.round(meal.estimatedNutrition.calories)} calo</span>
-                  <span>{Math.round(meal.estimatedNutrition.protein)}g dam</span>
-                  <span>{meal.prepTimeMinutes + meal.cookTimeMinutes} phut tong</span>
+                  <span>{Math.round(meal.estimatedNutrition.protein)}g đạm</span>
+                  <span>{meal.prepTimeMinutes + meal.cookTimeMinutes} phút</span>
                 </div>
               </div>
             ))}
@@ -139,30 +140,30 @@ export default async function DashboardPage() {
           <div className="flex items-center justify-between gap-3">
             <div>
               <p className="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-muted-foreground">
-                Buoi tap tiep theo
+                Buổi tập tiếp theo
               </p>
               <h2 className="mt-1 text-2xl font-semibold tracking-tight text-foreground">
-                {nextWorkout?.label ?? "Ngay hoi phuc"}
+                {nextWorkout?.label ?? "Ngày hồi phục"}
               </h2>
             </div>
             <Link
               href="/workout-planning"
               className={outlineLinkButtonClass}
             >
-              Mo lich tap
+              Mở lịch tập
             </Link>
           </div>
           <div className="mt-5 grid gap-3">
             <div className="rounded-[1.25rem] border border-white/80 bg-white/74 p-4">
               <div className="flex items-center justify-between gap-3">
-                <p className="text-sm font-medium text-foreground">{nextWorkout?.focus ?? "Van dong nhe"}</p>
+                <p className="text-sm font-medium text-foreground">{nextWorkout?.focus ?? "Vận động nhẹ"}</p>
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   <Timer className="size-4" />
-                  {nextWorkout?.estimatedDurationMin ?? 20} phut
+                  {nextWorkout?.estimatedDurationMin ?? 20} phút
                 </div>
               </div>
               <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                {nextWorkout?.notes ?? "Di bo, gian co va mot khung hoi phuc nhe nhang hon."}
+                {nextWorkout?.notes ?? "Đi bộ, giãn cơ và một nhịp hồi phục nhẹ hơn."}
               </p>
               <div className="mt-4 flex flex-wrap gap-2">
                 {(nextWorkout?.targetPatterns ?? []).map((pattern) => (
@@ -177,10 +178,10 @@ export default async function DashboardPage() {
             </div>
             <div className="rounded-[1.25rem] border border-white/80 bg-white/74 p-4">
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground">
-                Trang thai tich hop
+                Trạng thái
               </p>
               <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                Cac the trong trang tong quan dang doc cung bo generator co typing duoc dung o cac trang lap ke hoach chuyen biet.
+                Các thẻ trong trang tổng quan đang đọc cùng một bộ generator typed với planner chi tiết.
               </p>
             </div>
           </div>

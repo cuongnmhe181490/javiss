@@ -24,5 +24,29 @@ describe("generateMealPlan", () => {
     expect(plan.days).toHaveLength(7);
     expect(plan.shoppingList.items.length).toBeGreaterThan(0);
     expect(plan.pantryReconciliation.matches.length).toBeGreaterThan(0);
+    expect(plan.costSummary.totalMealCost).toBeGreaterThan(0);
+    expect(plan.shoppingList.totals.totalBuyCost).toBeGreaterThanOrEqual(0);
+  });
+
+  it("keeps a budget plan inside the configured budget when catalog allows it", () => {
+    const weeklyBudget = 420000;
+    const plan = generateMealPlan({
+      userId: "user-1",
+      mode: "budget",
+      goal: "general_health",
+      pantrySnapshot: [],
+      dietaryPreferences: [],
+      allergies: [],
+      dislikedFoods: [],
+      mealsPerDay: 3,
+      budgetAmount: weeklyBudget,
+      budgetPeriod: "week",
+      maxCookingTimeMinutes: 35,
+      targetCalories: 2000,
+      weekStartDate: "2026-03-23",
+    });
+
+    expect(plan.costSummary.withinBudget).toBe(true);
+    expect(plan.costSummary.totalMealCost).toBeLessThanOrEqual(weeklyBudget);
   });
 });

@@ -1,4 +1,5 @@
 import { Button } from "../../components/ui/button";
+import { formatCurrency } from "../../services/pricing";
 import type { ShoppingList } from "../../services/shopping-list/types";
 
 type ShoppingListViewProps = {
@@ -34,8 +35,8 @@ export function ShoppingListView({ shoppingList }: ShoppingListViewProps) {
 
       <section className="grid gap-4 md:grid-cols-3">
         <Stat label="Tong so mon" value={shoppingList.items.length.toString()} />
-        <Stat label="Da co san" value={shoppingList.totals.pantryCoveredItems.toString()} />
-        <Stat label="Can mua" value={shoppingList.totals.buyItems.toString()} />
+        <Stat label="Gia tri da co" value={formatCurrency(shoppingList.totals.totalCoveredCost)} />
+        <Stat label="Can mua" value={formatCurrency(shoppingList.totals.totalBuyCost)} />
       </section>
 
       <div className="space-y-4">
@@ -43,7 +44,7 @@ export function ShoppingListView({ shoppingList }: ShoppingListViewProps) {
           <section key={group.category} className="rounded-[2rem] border border-black/5 bg-white p-5 shadow-[0_14px_50px_rgba(15,23,42,0.06)]">
             <div className="mb-4 flex items-center justify-between">
               <h3 className="text-lg font-semibold text-slate-950">{group.category.replaceAll("_", " / ")}</h3>
-              <p className="text-sm text-slate-500">{Math.round(group.totalBuyQuantity)} can mua</p>
+              <p className="text-sm text-slate-500">{formatCurrency(group.totalBuyCost)}</p>
             </div>
             <div className="grid gap-3">
               {group.items.map((item) => (
@@ -59,6 +60,7 @@ export function ShoppingListView({ shoppingList }: ShoppingListViewProps) {
                     <p>
                       Dang co {item.availableQuantity} {item.unit}
                     </p>
+                    <p>{formatCurrency(item.buyCost)}</p>
                   </div>
                 </article>
               ))}

@@ -11,7 +11,7 @@ export const mockAuthUser = {
 export const mockProfile: ProfileRecord = {
   id: "profile_avery_001",
   userId: mockAuthUser.id,
-  displayName: "Avery",
+  displayName: "An Vy",
   avatarUrl: null,
   age: 31,
   sex: "prefer_not_to_say",
@@ -22,7 +22,7 @@ export const mockProfile: ProfileRecord = {
   activityLevel: "moderately_active",
   mealsPerDay: 3,
   maxCookingTimeMin: 30,
-  budgetAmount: 70,
+  budgetAmount: 700000,
   budgetPeriod: "weekly",
   dietaryTags: ["high_protein", "balanced"],
   allergies: [],
@@ -30,15 +30,18 @@ export const mockProfile: ProfileRecord = {
   cuisinePreferences: ["mediterranean", "japanese"],
   availableWorkoutEquipment: ["bodyweight", "dumbbells", "resistance_bands"],
   preferredWorkoutDays: ["monday", "wednesday", "friday"],
-  location: "Bangkok",
+  location: "Hà Nội",
   createdAt: "2026-03-01T08:00:00.000Z",
   updatedAt: "2026-03-01T08:00:00.000Z",
 };
 
 export const mockSettings: SettingsRecord = {
   userId: mockAuthUser.id,
-  theme: "light",
+  theme: "system",
+  currency: "VND",
+  budgetModeDefault: "weekly",
   measurementSystem: "metric",
+  region: "vi-VN",
   notificationsEnabled: true,
   weeklyCheckInDay: "sunday",
   treeAnimationEnabled: true,
