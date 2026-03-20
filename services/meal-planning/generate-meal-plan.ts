@@ -145,8 +145,8 @@ function getBudgetAwareMultiplier(
 ) {
   const targetCalories = getMealTargetCalories(request, mealType);
   const targetMultiplier = targetCalories / recipe.nutrition.calories;
-  const lowerBound = request.mode === "budget" ? 0.6 : 0.85;
-  const upperBound = 1.25;
+  const lowerBound = request.mode === "budget" ? 0.35 : 0.85;
+  const upperBound = request.mode === "budget" ? 1.05 : 1.25;
 
   const baseCost = calculateRecipeCost(recipe.ingredients).estimatedCost;
   if (!slotBudgetCap || baseCost <= 0) {
@@ -182,6 +182,10 @@ function scoreRecipe(
     ? 1 - clamp(scaledCost / Math.max(slotBudgetCap, 1), 0, 1.25)
     : 0.5;
   const varietyPenalty = usageCount * 0.65;
+
+  if (request.mode === "budget") {
+    return budgetScore * 5 + timeScore * 1.5 + caloriesScore * 1.25 - varietyPenalty;
+  }
 
   return pantryRatio * 4 + caloriesScore * 2 + timeScore + budgetScore - varietyPenalty;
 }
@@ -236,7 +240,11 @@ function chooseRecipe(
 
   const affordable = candidates
     .filter((candidate) => candidate.affordable)
-    .sort((a, b) => b.score - a.score || a.scaledCost - b.scaledCost);
+    .sort((a, b) =>
+      request.mode === "budget"
+        ? a.scaledCost - b.scaledCost || b.score - a.score
+        : b.score - a.score || a.scaledCost - b.scaledCost,
+    );
 
   if (affordable.length > 0) {
     const top = affordable.slice(0, Math.min(3, affordable.length));
@@ -348,6 +356,10 @@ function buildDays(request: MealPlanRequest, pantry: PantryItem[]) {
           ? "Ưu tiên món tận dụng nguyên liệu sẵn có."
           : "Giữ chi phí tuần trong mức ngân sách đã chọn.",
     });
+  }
+
+  if (weeklyBudgetCap !== undefined && spentCost > weeklyBudgetCap) {
+    warnings.add("Mức ngân sách này chưa đủ để giữ 3 bữa mỗi ngày với danh mục món hiện tại.");
   }
 
   return {

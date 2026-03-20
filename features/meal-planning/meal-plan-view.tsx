@@ -29,6 +29,13 @@ function Stat({ label, value }: { label: string; value: string }) {
 }
 
 export function MealPlanView({ plan }: MealPlanViewProps) {
+  const periodLabel =
+    plan.costSummary.budgetPeriod === "day"
+      ? "ngày"
+      : plan.costSummary.budgetPeriod === "week"
+        ? "tuần"
+        : null;
+
   return (
     <div className="space-y-6">
       <section className="glass-surface rounded-[2rem] p-6">
@@ -43,6 +50,11 @@ export function MealPlanView({ plan }: MealPlanViewProps) {
             <p className="max-w-xl text-sm leading-6 text-slate-600 dark:text-slate-300">
               Xem nhanh món ăn, chi phí và cách nấu trong 7 ngày.
             </p>
+            {plan.costSummary.budgetAmount && periodLabel ? (
+              <p className="inline-flex w-fit rounded-full bg-white px-3 py-1 text-xs font-medium text-slate-700 dark:bg-white/10 dark:text-slate-100">
+                Mục tiêu: {formatCurrency(plan.costSummary.budgetAmount)} / {periodLabel}
+              </p>
+            ) : null}
           </div>
           <Button
             variant="outline"
@@ -52,6 +64,22 @@ export function MealPlanView({ plan }: MealPlanViewProps) {
           </Button>
         </div>
       </section>
+
+      {!plan.costSummary.withinBudget || plan.metadata.warnings.length > 0 ? (
+        <section className="rounded-[1.75rem] border border-amber-200/70 bg-amber-50/90 p-4 text-sm text-amber-950 dark:border-amber-500/30 dark:bg-amber-500/10 dark:text-amber-100">
+          <p className="font-semibold">Kế hoạch này đang cần điều chỉnh thêm.</p>
+          <ul className="mt-2 space-y-1">
+            {plan.metadata.warnings.map((warning) => (
+              <li key={warning}>• {warning}</li>
+            ))}
+            {!plan.costSummary.withinBudget ? (
+              <li>
+                • Tổng chi phí hiện tại là {formatCurrency(plan.costSummary.totalMealCost)}, vẫn cao hơn ngân sách mục tiêu.
+              </li>
+            ) : null}
+          </ul>
+        </section>
+      ) : null}
 
       <section className="grid gap-4 md:grid-cols-3">
         <Stat label="Calo tuần" value={Math.round(plan.weeklyNutritionSummary.calories).toString()} />
@@ -133,8 +161,7 @@ export function MealPlanView({ plan }: MealPlanViewProps) {
                       <ul className="mt-2 space-y-2 text-sm text-slate-700 dark:text-slate-200">
                         {meal.scaledIngredients.slice(0, 4).map((ingredient) => (
                           <li key={`${meal.id}-${ingredient.normalizedName}`}>
-                            {ingredient.quantity} {ingredient.unit}{" "}
-                            {translateIngredientName(ingredient.name)}
+                            {ingredient.quantity} {ingredient.unit} {translateIngredientName(ingredient.name)}
                           </li>
                         ))}
                       </ul>
