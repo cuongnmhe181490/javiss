@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import { useEffect, useMemo, useState } from "react";
 
 import { Button } from "@/components/ui/button";
+import { activityLevelLabels, budgetPeriodLabels, equipmentLabels, goalLabels, sexLabels, weekdayLabels } from "@/lib/display";
 import { onboardingDraftSchema } from "@/lib/validation/onboarding";
 import { joinCsvList, splitCsvList } from "@/lib/validation/shared";
 import { cn } from "@/lib/utils";
@@ -126,6 +127,7 @@ export function OnboardingForm({
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
   const [isPending, setIsPending] = useState(false);
   const [isValid, setIsValid] = useState(true);
+  const [budgetPeriodDisplay, setBudgetPeriodDisplay] = useState(initialValues.profile.budgetPeriod);
 
   const initialPayload = useMemo(() => initialValues, [initialValues]);
 
@@ -199,7 +201,7 @@ export function OnboardingForm({
         <span className="text-sm font-medium text-neutral-700 dark:text-neutral-200">Chế độ thiết lập</span>
         <select
           className={cn(
-            "h-12 w-full rounded-2xl border bg-white px-4 text-sm text-neutral-950 outline-none transition focus:border-neutral-400 dark:bg-white/8 dark:text-white",
+            "app-select",
             fieldErrors.setupMode ? "border-rose-300" : "border-black/10 dark:border-white/10",
           )}
           defaultValue={initialValues.setupMode}
@@ -241,13 +243,14 @@ export function OnboardingForm({
           defaultValue={initialValues.profile.maxCookingTimeMin}
           error={fieldErrors["profile.maxCookingTimeMin"]}
         />
-        <Field label="Mức ngân sách" name="budgetAmount" type="number" defaultValue={initialValues.profile.budgetAmount ?? ""} error={fieldErrors["profile.budgetAmount"]} />
+        <Field label={`Ngân sách ${budgetPeriodDisplay === "daily" ? "ngày" : "tuần"} (VND)`} name="budgetAmount" type="number" defaultValue={initialValues.profile.budgetAmount ?? ""} error={fieldErrors["profile.budgetAmount"]} />
         <SelectField
           label="Chu kỳ ngân sách"
           name="budgetPeriod"
           options={budgetPeriodOptions}
           defaultValue={initialValues.profile.budgetPeriod ?? "weekly"}
           error={fieldErrors["profile.budgetPeriod"]}
+          onValueChange={(value) => setBudgetPeriodDisplay(value as typeof budgetPeriodDisplay)}
         />
         <Field label="Địa điểm" name="location" defaultValue={initialValues.profile.location ?? ""} error={fieldErrors["profile.location"]} />
       </div>
@@ -261,7 +264,7 @@ export function OnboardingForm({
           label="Pantry khởi đầu"
           name="starterPantryCsv"
           defaultValue={initialValues.pantryItems.map((item) => item.name).join(", ")}
-          hint="Nhập cách nhau bởi dấu phẩy."
+          hint="Ví dụ: trứng, gạo, sữa chua."
         />
       </div>
 
@@ -271,7 +274,7 @@ export function OnboardingForm({
             key={option}
             name="availableWorkoutEquipment"
             value={option}
-            label={option.replaceAll("_", " ")}
+            label={equipmentLabels[option]}
             defaultChecked={initialValues.profile.availableWorkoutEquipment.includes(option)}
           />
         ))}
@@ -283,7 +286,7 @@ export function OnboardingForm({
             key={option}
             name="preferredWorkoutDays"
             value={option}
-            label={option}
+            label={weekdayLabels[option]}
             defaultChecked={initialValues.profile.preferredWorkoutDays.includes(option)}
           />
         ))}
@@ -317,7 +320,7 @@ function Field({ label, name, defaultValue, type = "text", error }: FieldProps) 
       <span className="text-sm font-medium text-neutral-700 dark:text-neutral-200">{label}</span>
       <input
         className={cn(
-          "h-12 w-full rounded-2xl border bg-white px-4 text-sm text-neutral-950 outline-none transition focus:border-neutral-400 dark:bg-white/8 dark:text-white",
+          "app-input",
           error ? "border-rose-300" : "border-black/10 dark:border-white/10",
         )}
         defaultValue={defaultValue}
@@ -335,23 +338,33 @@ type SelectFieldProps = {
   options: readonly string[];
   defaultValue: string;
   error?: string;
+  onValueChange?: (value: string) => void;
 };
 
-function SelectField({ label, name, options, defaultValue, error }: SelectFieldProps) {
+function SelectField({ label, name, options, defaultValue, error, onValueChange }: SelectFieldProps) {
   return (
     <label className="space-y-2">
       <span className="text-sm font-medium text-neutral-700 dark:text-neutral-200">{label}</span>
       <select
         className={cn(
-          "h-12 w-full rounded-2xl border bg-white px-4 text-sm text-neutral-950 outline-none transition focus:border-neutral-400 dark:bg-white/8 dark:text-white",
+          "app-select",
           error ? "border-rose-300" : "border-black/10 dark:border-white/10",
         )}
         defaultValue={defaultValue}
         name={name}
+        onChange={(event) => onValueChange?.(event.target.value)}
       >
         {options.map((option) => (
           <option key={option} value={option}>
-            {option.replaceAll("_", " ")}
+            {name === "sex"
+              ? sexLabels[option as keyof typeof sexLabels]
+              : name === "goal"
+                ? goalLabels[option as keyof typeof goalLabels]
+                : name === "activityLevel"
+                  ? activityLevelLabels[option as keyof typeof activityLevelLabels]
+                  : name === "budgetPeriod"
+                    ? budgetPeriodLabels[option as keyof typeof budgetPeriodLabels]
+                    : option.replaceAll("_", " ")}
           </option>
         ))}
       </select>
@@ -372,7 +385,7 @@ function TextAreaField({ label, name, defaultValue, hint }: TextAreaFieldProps) 
     <label className="space-y-2 md:col-span-1">
       <span className="text-sm font-medium text-neutral-700 dark:text-neutral-200">{label}</span>
       <textarea
-        className="min-h-28 w-full rounded-2xl border border-black/10 bg-white px-4 py-3 text-sm text-neutral-950 outline-none transition focus:border-neutral-400 dark:border-white/10 dark:bg-white/8 dark:text-white"
+        className="app-textarea"
         defaultValue={defaultValue}
         name={name}
       />

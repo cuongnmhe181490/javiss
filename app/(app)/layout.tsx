@@ -10,7 +10,7 @@ export default function AuthenticatedLayout({ children }: { children: ReactNode 
       primaryAction={{ label: "Tạo kế hoạch", href: "/meal-planning/pantry" }}
       secondaryAction={{ label: "Hồ sơ", href: "/profile" }}
       statusLabel="Hôm nay"
-      statusValue="Kế hoạch đã sẵn sàng"
+      statusValue="Sẵn sàng dùng ngay"
     >
       {children}
     </AppShell>

@@ -8,11 +8,11 @@ export default async function BudgetMealPlanPage() {
   return (
     <div className="space-y-4">
       <PageIntro
-        eyebrow="Lap tu ngan sach"
-        title="Can bang chi phi, thoi gian va dinh duong trong mot tuan 7 ngay thuc te."
-        description="Cung bo planner co typing nay duoc rang buoc boi ngan sach tuan, gioi han thoi gian chuan bi, so thich nguoi dung va co che giam trung lap de giu ke hoach huu dung."
-        primaryAction={{ label: "Mo danh sach mua sam", href: "/shopping-list" }}
-        secondaryAction={{ label: "So sanh voi che do pantry", href: "/meal-planning/pantry" }}
+        eyebrow="Lập theo ngân sách"
+        title="Giữ chi phí, thời gian nấu và dinh dưỡng ở mức hợp lý."
+        description="Danh sách mua sắm sẽ tự tính theo kế hoạch tuần."
+        primaryAction={{ label: "Mở mua sắm", href: "/shopping-list" }}
+        secondaryAction={{ label: "So sánh với pantry", href: "/meal-planning/pantry" }}
       />
       <MealPlanView plan={budgetPlan} />
     </div>

@@ -8,11 +8,11 @@ export default async function WorkoutPlanningPage() {
   return (
     <div className="space-y-4">
       <PageIntro
-        eyebrow="Lap ke hoach tap luyen"
-        title="Tao lich tap theo thiet bi, dia diem va lich ca nhan."
-        description="Bo lap ke hoach tap dung thu vien bai tap co typing, do phu movement pattern, ngay tap uu tien va logic thay the de lich tap o nha hay phong gym van thuc te."
-        primaryAction={{ label: "Xem chi tiet lich tap", href: "/workout-planning/current" }}
-        secondaryAction={{ label: "Mo tong quan", href: "/dashboard" }}
+        eyebrow="Lập kế hoạch tập luyện"
+        title="Tạo lịch tập theo thiết bị và lịch cá nhân."
+        description="Lịch tập được chia theo ngày, thời lượng và độ phù hợp."
+        primaryAction={{ label: "Xem lịch tập", href: "/workout-planning/current" }}
+        secondaryAction={{ label: "Mở tổng quan", href: "/dashboard" }}
       />
       <WorkoutPlanView plan={workoutPlan} />
     </div>

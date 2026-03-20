@@ -8,11 +8,11 @@ export default async function PantryMealPlanPage() {
   return (
     <div className="space-y-4">
       <PageIntro
-        eyebrow="Lap tu pantry"
-        title="Uu tien nguyen lieu dang co va giam lang phi trong ca tuan."
-        description="Ke hoach tuan nay duoc tao boi meal engine deterministic dua tren muc do trung pantry, thoi gian nau, mon khong thich va diem tai su dung nguyen lieu."
-        primaryAction={{ label: "Xem danh sach mua sam", href: "/shopping-list" }}
-        secondaryAction={{ label: "Chuyen sang che do ngan sach", href: "/meal-planning/budget" }}
+        eyebrow="Lập từ đồ sẵn có"
+        title="Ưu tiên nguyên liệu đang có trong bếp."
+        description="Nếu muốn đổi lại pantry, bạn có thể cập nhật trước khi xem thực đơn."
+        primaryAction={{ label: "Cập nhật pantry", href: "/pantry?returnTo=/meal-planning/pantry" }}
+        secondaryAction={{ label: "Xem mua sắm", href: "/shopping-list" }}
       />
       <MealPlanView plan={pantryPlan} />
     </div>

@@ -235,4 +235,119 @@
   .tree-stage-flowering {
     --tree-stage: 34 90% 58%;
   }
+
+  .interactive-card {
+    transition:
+      transform 180ms ease,
+      box-shadow 220ms ease,
+      border-color 180ms ease,
+      background-color 180ms ease;
+  }
+
+  .interactive-card:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.78),
+      0 28px 56px -32px rgba(12, 18, 28, 0.28),
+      0 12px 24px -16px rgba(12, 18, 28, 0.18);
+  }
+
+  .dark .interactive-card:hover {
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.08),
+      0 28px 56px -32px rgba(0, 0, 0, 0.6),
+      0 12px 24px -16px rgba(0, 0, 0, 0.42);
+  }
+
+  .interactive-chip {
+    transition:
+      transform 150ms ease,
+      background-color 150ms ease,
+      border-color 150ms ease,
+      color 150ms ease;
+  }
+
+  .interactive-chip:hover {
+    transform: translateY(-1px);
+  }
+
+  .app-input,
+  .app-select,
+  .app-textarea {
+    width: 100%;
+    border-radius: 1rem;
+    border: 1px solid rgba(15, 23, 42, 0.1);
+    background: rgba(255, 255, 255, 0.94);
+    color: rgb(10 15 23);
+    outline: none;
+    transition:
+      border-color 150ms ease,
+      box-shadow 150ms ease,
+      background-color 150ms ease;
+  }
+
+  .app-input,
+  .app-select {
+    height: 3rem;
+    padding-inline: 1rem;
+  }
+
+  .app-textarea {
+    min-height: 7rem;
+    padding: 0.875rem 1rem;
+  }
+
+  .app-input::placeholder,
+  .app-textarea::placeholder {
+    color: color-mix(in oklab, var(--foreground) 46%, white);
+  }
+
+  .app-input:focus,
+  .app-select:focus,
+  .app-textarea:focus {
+    border-color: color-mix(in oklab, var(--primary) 54%, white);
+    box-shadow: 0 0 0 4px color-mix(in oklab, var(--primary) 16%, transparent);
+  }
+
+  .app-select {
+    appearance: none;
+    background-image:
+      linear-gradient(45deg, transparent 50%, color-mix(in oklab, var(--foreground) 68%, white) 50%),
+      linear-gradient(135deg, color-mix(in oklab, var(--foreground) 68%, white) 50%, transparent 50%);
+    background-position:
+      calc(100% - 18px) calc(50% - 3px),
+      calc(100% - 12px) calc(50% - 3px);
+    background-size: 6px 6px, 6px 6px;
+    background-repeat: no-repeat;
+    padding-right: 2.5rem;
+  }
+
+  .app-select option {
+    background: rgb(255 255 255);
+    color: rgb(10 15 23);
+  }
+
+  .dark .app-input,
+  .dark .app-select,
+  .dark .app-textarea {
+    border-color: rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.08);
+    color: rgb(247 248 250);
+  }
+
+  .dark .app-input::placeholder,
+  .dark .app-textarea::placeholder {
+    color: rgba(255, 255, 255, 0.56);
+  }
+
+  .dark .app-select {
+    background-image:
+      linear-gradient(45deg, transparent 50%, rgba(255, 255, 255, 0.72) 50%),
+      linear-gradient(135deg, rgba(255, 255, 255, 0.72) 50%, transparent 50%);
+  }
+
+  .dark .app-select option {
+    background: rgb(20 27 38);
+    color: rgb(247 248 250);
+  }
 }

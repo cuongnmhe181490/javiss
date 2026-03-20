@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 
 import { Button } from "@/components/ui/button";
+import { pantryCategoryLabels, pantrySourceLabels } from "@/lib/display";
 import { pantryItemInputSchema } from "@/lib/validation/profile";
 import { cn } from "@/lib/utils";
 import type { PantryItemInput } from "@/types/pantry";
@@ -160,7 +161,7 @@ export function PantryForm({
         <Field label="Tên" name="name" defaultValue={initialValues?.name} error={fieldErrors.name} />
         <Field label="Tên chuẩn hóa" name="normalizedName" defaultValue={initialValues?.normalizedName} error={fieldErrors.normalizedName} />
         <Field label="Số lượng" name="quantity" type="number" defaultValue={initialValues?.quantity} error={fieldErrors.quantity} />
-        <Field label="Đơn vị" name="unit" defaultValue={initialValues?.unit} error={fieldErrors.unit} />
+        <Field label="Đơn vị (quả, g, kg, ml, lít...)" name="unit" defaultValue={initialValues?.unit} error={fieldErrors.unit} />
         <Field label="Hạn sử dụng" name="expiresOn" type="date" defaultValue={initialValues?.expiresOn} error={fieldErrors.expiresOn} />
         <SelectField label="Nguồn" name="source" options={sourceOptions} defaultValue={initialValues?.source ?? "manual"} error={fieldErrors.source} />
       </div>
@@ -206,7 +207,7 @@ function Field({ label, name, defaultValue, type = "text", error }: FieldProps) 
       <span className="text-sm font-medium text-neutral-700 dark:text-neutral-200">{label}</span>
       <input
         className={cn(
-          "h-12 w-full rounded-2xl border bg-white px-4 text-sm text-neutral-950 outline-none transition focus:border-neutral-400 dark:bg-white/8 dark:text-white",
+          "app-input",
           error ? "border-rose-300" : "border-black/10 dark:border-white/10",
         )}
         defaultValue={defaultValue === null ? "" : (defaultValue as string | number | undefined)}
@@ -232,7 +233,7 @@ function SelectField({ label, name, options, defaultValue, error }: SelectFieldP
       <span className="text-sm font-medium text-neutral-700 dark:text-neutral-200">{label}</span>
       <select
         className={cn(
-          "h-12 w-full rounded-2xl border bg-white px-4 text-sm text-neutral-950 outline-none transition focus:border-neutral-400 dark:bg-white/8 dark:text-white",
+          "app-select",
           error ? "border-rose-300" : "border-black/10 dark:border-white/10",
         )}
         defaultValue={defaultValue}
@@ -240,7 +241,9 @@ function SelectField({ label, name, options, defaultValue, error }: SelectFieldP
       >
         {options.map((option) => (
           <option key={option} value={option}>
-            {option.replaceAll("_", " ")}
+            {name === "category"
+              ? pantryCategoryLabels[option as keyof typeof pantryCategoryLabels]
+              : pantrySourceLabels[option as keyof typeof pantrySourceLabels]}
           </option>
         ))}
       </select>

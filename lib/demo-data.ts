@@ -294,15 +294,27 @@ async function getDemoWorkoutPlanFor(profile: ProfileRecord): Promise<WorkoutPla
     .map((item) => (item in equipmentMap ? equipmentMap[item] : undefined))
     .filter((item): item is WorkoutEquipment => Boolean(item));
 
+  const location =
+    equipment.some((item) => ["barbell", "cable_machine", "leg_press", "treadmill", "full_gym"].includes(item))
+      ? "gym"
+      : "home";
+
+  const level =
+    profile.activityLevel === "sedentary" || profile.activityLevel === "lightly_active"
+      ? "beginner"
+      : profile.activityLevel === "athlete"
+        ? "advanced"
+        : "intermediate";
+
   return generateWorkoutPlan({
     userId: mockAuthUser.id,
     goal: profile.goal,
-    level: "intermediate",
-    location: "home",
+    level,
+    location,
     equipment,
     daysPerWeek: Math.max(1, profile.preferredWorkoutDays.length),
     preferredDays: profile.preferredWorkoutDays,
-    sessionLengthMin: 45,
+    sessionLengthMin: Math.max(20, Math.min(profile.maxCookingTimeMin + 15, 75)),
     weekStartDate: "2026-03-23",
   });
 }

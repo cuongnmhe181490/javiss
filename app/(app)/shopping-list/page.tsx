@@ -8,10 +8,10 @@ export default async function ShoppingListPage() {
   return (
     <div className="space-y-4">
       <PageIntro
-        eyebrow="Danh sach mua sam"
-        title="Nhung gi can mua sau khi doi chieu pantry."
-        description="Danh sach duoc tong hop tu ke hoach bua an da luu, cac nguyen lieu trung lap duoc gop lai, va so luong dang co trong pantry duoc tru ra truoc khi nhom theo danh muc."
-        primaryAction={{ label: "Mo ke hoach pantry", href: "/meal-planning/pantry" }}
+        eyebrow="Danh sách mua sắm"
+        title="Những gì cần mua sau khi trừ pantry."
+        description="Mọi món đã được gộp và nhóm theo danh mục."
+        primaryAction={{ label: "Mở thực đơn", href: "/meal-planning/pantry" }}
         secondaryAction={{ label: "Xem pantry", href: "/pantry" }}
       />
       <ShoppingListView shoppingList={pantryPlan.shoppingList} />
